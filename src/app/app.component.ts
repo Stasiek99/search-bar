@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import { listOfCountries } from "../assets/db.mock";
-import { Country } from "./country.inerface";
-
-export interface JSONCountry {
-  name: string;
-  code: string;
-}
+import { CountryElement } from "./interfaces/country-element.interface";
+import { CountryDataService } from "./country-data.service";
 
 @Component({
   selector: 'app-root',
@@ -17,44 +12,42 @@ export interface JSONCountry {
 
 export class AppComponent implements OnInit {
 
-  private readonly jsonUrl = "assets/countries.json";
   private readonly urlFragment = "https://www.google.com/search?q=";
 
-  filteredCountries: Country[] = [];
   inputValue: string = '';
-  jsonCountries: JSONCountry[] = [];
+  allCountries: CountryElement[] = [];
+  filteredCountries: CountryElement[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private countryDataService: CountryDataService) {
   }
 
   ngOnInit(): void {
-    this.http.get<(JSONCountry)[]>(this.jsonUrl)
+    this.countryDataService.httpGetData()
       .subscribe(countries => {
-        console.log(countries);
-        this.jsonCountries = countries;
+        this.allCountries = countries;
       });
   }
 
-  onChangesSearchBarInput(searchString: string){
+  onChangesSearchBarInput(searchString: string): void {
     this.filteredCountries = this.getFilteredCountries(searchString);
   }
 
-  onSelectAutoCompleteElements(labelElement: string): void{
+  onSelectAutoCompleteElements(labelElement: string): void {
     this.inputValue = labelElement;
     this.redirectToGoogle()
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.redirectToGoogle();
   }
 
-  private redirectToGoogle(): void{
+  private redirectToGoogle(): void {
     const searchRedirectUrlWithQuery: string = this.urlFragment + this.inputValue;
     window.location.href = searchRedirectUrlWithQuery;
   }
 
-  private getFilteredCountries(searchString: string){
-    return listOfCountries.filter(elem => elem.label.includes(searchString));
+  private getFilteredCountries(searchString: string): CountryElement[] {
+    return this.allCountries.filter(elem => elem.name.toLowerCase().includes(searchString.toLowerCase()));
   }
 
 }
