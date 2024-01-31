@@ -4,7 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { CountryDataService } from "./country-data.service";
+import { CountryDataService } from "./country-search-engine/services/country-data.service";
+import { CountrySearchEngineModule } from "./country-search-engine/country-search-engine.module";
 
 @NgModule({
   declarations: [
@@ -13,9 +14,9 @@ import { CountryDataService } from "./country-data.service";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    CountrySearchEngineModule
   ],
   providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
