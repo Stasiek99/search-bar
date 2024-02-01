@@ -13,7 +13,7 @@ export class CountrySearchEngineComponent implements OnInit{
   inputValue: string = "";
   allCountries: CountryElement[] = [];
   filteredCountries: CountryElement[] = [];
-  private readonly urlFragment: string = "https://www.google.com/search?g=";
+  private readonly urlFragment: string = "https://www.google.com/search?q=";
 
   constructor(private http: HttpClient, private countryDataService: CountryDataService) {
   }

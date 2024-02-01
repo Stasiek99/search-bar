@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { CountryDataService } from "./country-search-engine/services/country-data.service";
 import { CountrySearchEngineModule } from "./country-search-engine/country-search-engine.module";
+import { ViewsModule } from "./views/views.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CountrySearchEngineModule } from "./country-search-engine/country-searc
   imports: [
     BrowserModule,
     FormsModule,
-    CountrySearchEngineModule
+    CountrySearchEngineModule,
+    ViewsModule
   ],
   providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]
