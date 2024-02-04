@@ -8,6 +8,7 @@ import { CountryDataService } from "./country-search-engine/services/country-dat
 import { CountrySearchEngineModule } from "./country-search-engine/country-search-engine.module";
 import { ViewsModule } from "./views/views.module";
 import { AppRoutingModule } from "./app-routing.module";
+import { UserModule } from "./user-presentation/user.module";
 import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
     FormsModule,
     CountrySearchEngineModule,
     ViewsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UserModule
   ],
   providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]
