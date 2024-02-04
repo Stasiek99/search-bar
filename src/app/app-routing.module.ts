@@ -5,12 +5,14 @@ import { HomeComponent } from "./views/components/home/home.component";
 import { CountrySearchEngineComponent } from "./country-search-engine/country-search-engine/country-search-engine.component";
 import { PageNotFoundComponent } from "./views/components/page-not-found/page-not-found.component";
 import { CreateUserComponent } from "./create-user/create-user.component";
+import { UserPresentationComponent } from "./user-presentation/components/user-presentation/user-presentation.component";
 
 export const routeConfig: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "home", component: HomeComponent},
   {path: "search-bar", component: CountrySearchEngineComponent},
   {path: "create-new-user", component: CreateUserComponent},
+  {path: "user", component: UserPresentationComponent},
   {path: "**", pathMatch: "full", component: PageNotFoundComponent}
 ];
 
