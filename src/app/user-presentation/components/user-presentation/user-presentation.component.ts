@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from "../../interfaces/user.interface";
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-user-presentation',
@@ -8,15 +9,13 @@ import { User } from "../../interfaces/user.interface";
   styleUrls: ['./user-presentation.component.scss']
 })
 export class UserPresentationComponent implements OnInit{
-  user: User = {
-    name: "Stasiek",
-    login: "Stasiek99",
-    password: "12345",
-    country: "Poland",
-    age: 23,
+  user: User | null = null;
+
+  constructor(private userService: UserService) {
   }
 
-ngOnInit(): void {
-  console.log(this.user);
-}
+  ngOnInit(): void {
+    this.user = this.userService.getUser() as User;
+    console.log(this.user);
+  }
 }
