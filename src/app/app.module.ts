@@ -2,6 +2,8 @@ import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from "@angular/material/button";
 
 import { AppComponent } from './app.component';
 import { CountryDataService } from "./country-search-engine/services/country-data.service";
@@ -11,6 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { UserModule } from "./user-presentation/user.module";
 import { CreateUserComponent } from './create-user/create-user.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +22,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
     CountrySearchEngineModule,
     ViewsModule,
     AppRoutingModule,

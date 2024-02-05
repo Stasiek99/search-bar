@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+body {
+  font-family: "JetBrains Mono Medium", sans-serif;
+}
+button {
+  font-size: 100%;
+  font-family: inherit;
+}
+textarea {
+  font-size: 100%;
+  font-family: inherit;
+}
+input {
+  font-size: 100%;
+  font-family: inherit;
+}
+select {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
