@@ -1,3 +1,47 @@
-input.ng-invalid.ng-touched {
-  border: 1px solid darkred;
+//.form-group {
+//  padding: 0;
+//}
+//
+//.mat-raised-button {
+//  background-color: #2F3C7E;
+//  color: #FBEAEB;
+//  max-height: 60px;
+//  border-radius: 8px;
+//  position: absolute;
+//  display: inline-block;
+//}
+//
+//div {
+//  transform: translateY(20%);
+//  margin: 0 auto;
+//}
+
+.userdata {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 600px; /* Dostosuj szerokość formularza według potrzeb */
+}
+
+.user-form {
+  width: 100%;
+}
+
+.form-content {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
 }

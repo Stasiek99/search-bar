@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UserModule } from "../user-presentation/user.module";
 
 @NgModule({
   declarations: [
@@ -11,6 +17,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent
+  ],
+  imports: [
+    UserModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     HeaderComponent,
