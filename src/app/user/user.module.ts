@@ -6,9 +6,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 
+import { SharedModule } from "../shared/shared.module";
 import { UserPresentationComponent } from "./components/user-presentation/user-presentation.component";
 import { CreateUserComponent } from "../create-user/create-user.component";
-import { DialogCreateUserComponent } from "../create-user/dialog-create-user/dialog-create-user.component";
+import { DialogCreateUserComponent } from "../create-user/components/dialog-create-user/dialog-create-user.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DialogCreateUserComponent } from "../create-user/dialog-create-user/dia
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedModule
   ],
   exports: [UserPresentationComponent]
 })
