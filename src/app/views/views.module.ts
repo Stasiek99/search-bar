@@ -9,7 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { UserModule } from "../user-presentation/user.module";
+import { UserModule } from "../user/user.module";
 
 @NgModule({
   declarations: [

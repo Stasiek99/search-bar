@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 
-import { UserService } from "../user-presentation/services/user.service";
-import { DialogCreateUserComponent } from "./dialog-create-user/dialog-create-user.component";
+import { User } from "../user/interfaces/user.interface";
+import { UserStateService } from "../user/services/user-state.service";
+import { DialogCreateUserComponent } from "./components/dialog-create-user/dialog-create-user.component";
 
 @Component({
   selector: 'app-create-user',
@@ -12,28 +12,24 @@ import { DialogCreateUserComponent } from "./dialog-create-user/dialog-create-us
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent {
-  @ViewChild("f") userDataForm!: NgForm;
-  passedValues: any;
 
-  constructor(private userService: UserService, private router: Router, private dialog: MatDialog) {
+  constructor(private userService: UserStateService, private router: Router, private dialog: MatDialog) {
   }
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(DialogCreateUserComponent, {
-      data: this.userDataForm,
+  openDialog(userData: User): void {
+    let dialogRef: MatDialogRef<DialogCreateUserComponent> = this.dialog.open(DialogCreateUserComponent, {
       height: "200px",
       width: "400px"
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.passedValues = result.value;
-        this.userService.setUser(this.passedValues);
-        this.redirectToUserPresentation();
+        this.userService.setUser(userData);
+        this.redirectToUserPreview();
       }
     });
   }
 
-  redirectToUserPresentation(): void {
+  redirectToUserPreview(): void {
     this.router.navigate(["/", "user"]);
   }
 }
