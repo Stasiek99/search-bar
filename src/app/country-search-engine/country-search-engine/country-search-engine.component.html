@@ -4,10 +4,11 @@
       [inputValue]="inputValue"
       (searchBarChanged)="onSearchBarInputChanged($event)"
       (submitEvent)="onSubmitted()"
+      (keydown)="onKeyDown($event)"
     ></app-search-input>
   </div>
 <section class="search-results">
-  <ul>
+  <ul *ngIf="shouldShowAutoCompleteList()">
     <app-search-autocomplete
       [filteredCountries]="filteredCountries"
       [inputValue]="inputValue"
