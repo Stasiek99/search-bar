@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { CountrySearchLocalStorageService } from "./country-search-engine/services/country-search-local-storage.service";
+import { CountryDataService } from "./country-search-engine/services/country-data.service";
 import { CountrySearchEngineModule } from "./country-search-engine/country-search-engine.module";
 import { ViewsModule } from "./views/views.module";
 import { SharedModule } from "./shared/shared.module";
@@ -29,7 +29,7 @@ import { EditUserComponent } from './create-user/components/edit-user/edit-user.
     ViewsModule,
     SharedModule
   ],
-  providers: [HttpClientModule, CountrySearchLocalStorageService],
+  providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
