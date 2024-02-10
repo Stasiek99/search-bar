@@ -10,13 +10,16 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserModule } from "../user/user.module";
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SidenavComponent
   ],
   imports: [
     UserModule,
@@ -24,11 +27,13 @@ import { UserModule } from "../user/user.module";
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ]
 })
 export class ViewsModule {}
