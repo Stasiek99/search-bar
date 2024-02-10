@@ -20,6 +20,7 @@ export class AppComponent {
     [SidenavNavigationType.search_bar]: ["/", "search-bar"],
     [SidenavNavigationType.new_user]: ["/", "create-new-user"],
     [SidenavNavigationType.user_preview]: ["/", "user"],
+    [SidenavNavigationType.search_history]: ["/", "search-history"],
   }
 
   onSelectLink(routeNumber: SidenavNavigationType): void {
