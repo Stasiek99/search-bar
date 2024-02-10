@@ -2,18 +2,21 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { MatTableModule } from "@angular/material/table";
 
 import { CountrySearchEngineComponent } from "./country-search-engine/country-search-engine.component";
 import { SearchInputComponent } from "./components/search-input/search-input.component";
 import { SearchAutocompleteComponent } from "./components/search-autocomplete/search-autocomplete.component";
 import { CountrySearchLocalStorageService } from "./services/country-search-local-storage.service";
 import { CountrySearchStateService } from "./services/country-search-state.service";
+import { SearchHistoryComponent } from './components/search-history/search-history.component';
 
 @NgModule({
   declarations: [
     CountrySearchEngineComponent,
     SearchInputComponent,
-    SearchAutocompleteComponent
+    SearchAutocompleteComponent,
+    SearchHistoryComponent
   ],
   exports: [
     CountrySearchEngineComponent
@@ -21,7 +24,8 @@ import { CountrySearchStateService } from "./services/country-search-state.servi
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [HttpClientModule, CountrySearchLocalStorageService, CountrySearchStateService]
 })
