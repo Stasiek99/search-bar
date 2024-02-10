@@ -1,14 +1,10 @@
-<ul class="nav">
-  <li>
-    <button class="nav__item" mat-raised-button><a (click)="goToHome()">Home</a></button>
-  </li>
-  <li>
-    <button class="nav__item" mat-raised-button><a (click)="goToSearchBar()">Search Bar</a></button>
-  </li>
-  <li>
-    <button class="nav__item" mat-raised-button><a (click)="goToCrateUser()">Create New User</a></button>
-  </li>
-  <li>
-    <button class="nav__item" mat-raised-button><a (click)="goToUserPresentation()">User Data Preview</a></button>
-  </li>
-</ul>
+<header class="app-header">
+  <button mat-mini-fab color="#FBEAEB" (click)="onClickMenuIcon()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div>
+    <a routerLink="/">
+      <span class="app-title">Single Page Application</span>
+    </a>
+  </div>
+</header>

@@ -4,6 +4,9 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatIconModule } from "@angular/material/icon";
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
@@ -12,7 +15,6 @@ import { CountrySearchEngineModule } from "./country-search-engine/country-searc
 import { ViewsModule } from "./views/views.module";
 import { SharedModule } from "./shared/shared.module";
 import { EditUserComponent } from './create-user/components/edit-user/edit-user.component';
-
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { EditUserComponent } from './create-user/components/edit-user/edit-user.
     BrowserAnimationsModule,
     AppRoutingModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
     CountrySearchEngineModule,
     ViewsModule,
     SharedModule
