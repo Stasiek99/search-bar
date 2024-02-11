@@ -6,7 +6,7 @@ import { CountryElement } from "../interfaces/country-element.interface";
 
 @Injectable()
 export class CountryDataService {
-  private readonly jsonURL: string = "assets/countries.json";
+  private readonly jsonURL: string = "http://localhost:3000/countries";
 
   constructor(private http: HttpClient) {
   }
