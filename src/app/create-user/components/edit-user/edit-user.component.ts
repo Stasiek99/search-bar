@@ -14,6 +14,6 @@ export class EditUserComponent {
   }
 
   onFormSubmit(editedUser: User): void {
-    this.userService.setUser(editedUser);
+    this.userService.addUser(editedUser);
   }
 }
