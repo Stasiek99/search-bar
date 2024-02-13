@@ -25,7 +25,7 @@ export class CreateUserComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userService.setUser(userData);
+        this.userService.addUser(userData);
         this.openSnackBar();
         this.redirectToUserPreview();
       }

@@ -9,16 +9,18 @@ import { UserPresentationComponent } from "./user/components/user-presentation/u
 import { EditUserComponent } from "./create-user/components/edit-user/edit-user.component";
 import { SearchHistoryComponent } from "./country-search-engine/components/search-history/search-history.component";
 import { LoginViewComponent } from "./auth/components/login-view/login-view.component";
+import { UsersListComponent } from "./user/components/users-list/users-list.component";
 
 export const routeConfig: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "home", component: HomeComponent},
   {path: "search-bar", component: CountrySearchEngineComponent},
+  {path: "search-history", component: SearchHistoryComponent},
+  {path: "login", component: LoginViewComponent},
   {path: "create-new-user", component: CreateUserComponent},
   {path: "user", component: UserPresentationComponent},
   {path: "edit-user", component: EditUserComponent},
-  {path: "login", component: LoginViewComponent},
-  {path: "search-history", component: SearchHistoryComponent},
+  {path: "users-list", component: UsersListComponent},
   {path: "**", pathMatch: "full", component: PageNotFoundComponent}
 ];
 

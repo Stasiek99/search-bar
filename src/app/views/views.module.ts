@@ -33,7 +33,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    PageNotFoundComponent
   ]
 })
 export class ViewsModule {}

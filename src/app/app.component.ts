@@ -21,6 +21,7 @@ export class AppComponent {
     [SidenavNavigationType.new_user]: ["/", "create-new-user"],
     [SidenavNavigationType.user_preview]: ["/", "user"],
     [SidenavNavigationType.search_history]: ["/", "search-history"],
+    [SidenavNavigationType.users_list]: ["/", "users-list"],
     [SidenavNavigationType.login]: ["/", "login"]
   }
 
