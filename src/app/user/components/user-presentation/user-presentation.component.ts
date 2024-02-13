@@ -33,4 +33,8 @@ export class UserPresentationComponent implements OnInit{
   redirectToEditUser(): void {
     this.router.navigate(["/", "edit-user"]);
   }
+
+  redirectToCreateUser(): void {
+    this.router.navigate(["/", "create-new-user"]);
+  }
 }
