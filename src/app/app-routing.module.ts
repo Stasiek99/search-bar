@@ -10,6 +10,7 @@ import { EditUserComponent } from "./create-user/components/edit-user/edit-user.
 import { SearchHistoryComponent } from "./country-search-engine/components/search-history/search-history.component";
 import { LoginViewComponent } from "./auth/components/login-view/login-view.component";
 import { UsersListComponent } from "./user/components/users-list/users-list.component";
+import { TestObservablesComponent } from "./observables-testing/components/test-observables/test-observables.component";
 
 export const routeConfig: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
@@ -21,6 +22,7 @@ export const routeConfig: Routes = [
   {path: "user", component: UserPresentationComponent},
   {path: "edit-user", component: EditUserComponent},
   {path: "users-list", component: UsersListComponent},
+  {path: "test", component: TestObservablesComponent},
   {path: "**", pathMatch: "full", component: PageNotFoundComponent}
 ];
 

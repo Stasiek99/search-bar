@@ -5,5 +5,6 @@ export enum SidenavNavigationType {
   user_preview = "user-preview",
   users_list = "users-list",
   search_history = "search-history",
-  login = "login"
+  login = "login",
+  test = "test"
 }

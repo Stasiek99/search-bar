@@ -17,11 +17,12 @@ import { ViewsModule } from "./views/views.module";
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { EditUserComponent } from './create-user/components/edit-user/edit-user.component';
+import { TestModule } from "./observables-testing/test.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditUserComponent
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ import { EditUserComponent } from './create-user/components/edit-user/edit-user.
     SharedModule,
     AuthModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    TestModule
   ],
   providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]

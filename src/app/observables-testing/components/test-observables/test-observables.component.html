@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required ngModel name="name">
+      </div>
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" id="login" required ngModel name="login">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required ngModel name="password">
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" required ngModel name="country">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" required ngModel name="age">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">Send Post</button>
+    </form>
+  </div>
+  <hr/>
+  <div class="row">
+    <button class="btn btn-primary" (click)="onFetchPost()">Fetch Posts</button>
+    <button class="btn btn-primary" [disabled]="loadedPosts.length < 1" (click)="onClearPosts()">Clear Posts</button>
+  </div>
+  <div class="row">
+    <p *ngIf="loadedPosts.length < 1">No Users available!</p>
+    <ul class="list-group" *ngIf="loadedPosts.length >= 1">
+      <li class="list-group-item" *ngFor="let post of loadedPosts">
+        <h3>{{post.name}}</h3>
+        <p>{{post.age}}</p>
+      </li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="error">
+      <h1>An error occurred!</h1>
+      <p>{{error}}</p>
+      <button (click)="onHandleError()">Okay</button>
+    </div>
+  </div>
+</div>
+<hr>
+<br>
+<div class="another-container">
+  <h3>Subjects Testing</h3>
+<!--    <app-subject></app-subject>-->
+<!--    <app-behavior-subject></app-behavior-subject>-->
+<!--    <app-replay-subject></app-replay-subject>-->
+<!--    <app-async-subject></app-async-subject>-->
+</div>
