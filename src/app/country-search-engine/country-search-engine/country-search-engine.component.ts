@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { CountrySearchStateService } from "../services/country-search-state.service";
 import { CountryDataService } from "../services/country-data.service";
 import { CountryElement } from "../interfaces/country-element.interface";
 import { CountrySearched } from "../interfaces/country-searched.interface";
+import { SnackbarSearchAutocompleteErrorComponent } from "../components/snackbar-search-autocomplete-error/snackbar-search-autocomplete-error.component";
 
 @Component({
   selector: 'app-country-search-engine',
@@ -15,15 +17,20 @@ export class CountrySearchEngineComponent implements OnInit{
   inputValue: string = "";
   allCountries: CountryElement[] = [];
   filteredCountries: CountryElement[] = [];
+  durationInSeconds = 10;
+  errorMessage: string | null = null;
   private readonly urlFragment: string = "https://www.google.com/search?q=";
 
-  constructor(private http: HttpClient, private countryDataService: CountryDataService, private countrySearchStateService: CountrySearchStateService) {
+  constructor(private http: HttpClient, private countryDataService: CountryDataService, private countrySearchStateService: CountrySearchStateService, private _snackbar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.countryDataService.httpGetData()
       .subscribe(countries => {
         this.allCountries = countries;
+      }, error => {
+        this.errorMessage = error.message;
+        this.openErrorSnackBar();
       });
   }
 
@@ -57,6 +64,13 @@ export class CountrySearchEngineComponent implements OnInit{
       event.preventDefault();
       this.onSubmitted();
     }
+  }
+
+  openErrorSnackBar(): void {
+    this._snackbar.openFromComponent(SnackbarSearchAutocompleteErrorComponent, {
+      duration: this.durationInSeconds * 1000,
+      data: this.errorMessage
+    });
   }
 
   shouldShowAutoCompleteList(): boolean {
