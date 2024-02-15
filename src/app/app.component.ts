@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { MatSidenav } from "@angular/material/sidenav";
 
-import { SidenavNavigationType } from "./views/enums/sidenav-navigation-type";
+import { SidenavNavigationType } from "./core/layout/enums/sidenav-navigation-type";
 
 @Component({
   selector: 'app-root',
