@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
-import { LoginViewComponent } from "./components/login-view/login-view.component";
+import { LoginViewComponent } from "./feature-login/containers/login-view/login-view.component";
 
 @NgModule({
   declarations: [LoginViewComponent],
