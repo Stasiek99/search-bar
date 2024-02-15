@@ -8,7 +8,7 @@ import { User } from "../../user/interfaces/user.interface";
 @Injectable({providedIn: "root"})
 export class TestService {
   error: Subject<string> = new Subject<string>();
-  private readonly jsonURL = "http://localhost:4200/users";
+  private readonly jsonURL = "http://localhost:3000/users";
   constructor(private http: HttpClient) {
   }
 
