@@ -3,25 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatIconModule } from "@angular/material/icon";
-import { MatCardModule } from "@angular/material/card";
-import { MatInputModule } from "@angular/material/input";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { CountryDataService } from "./country-search-engine/services/country-data.service";
-import { CountrySearchEngineModule } from "./country-search-engine/country-search-engine.module";
-import { ViewsModule } from "./views/views.module";
+import { CountryDataService } from "./search-engine/feature-search-engine/services/country-data.service";
+import { SearchEngineModule } from "./search-engine/search-engine.module";
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
-import { EditUserComponent } from './create-user/components/edit-user/edit-user.component';
+import { LayoutModule } from "./core/layout/layout.module";
+import { HomeModule } from "./home/home.module";
+import { CreateUserModule } from "./users/feature-create-user/create-user.module";
+import { EditUserModule } from "./users/feature-edit-user/edit-user.module";
+import { UserDetailsModule } from "./users/feature-user-details/user-details.module";
+import { UsersListModule } from "./users/feature-user-list/users-list.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EditUserComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,15 +28,17 @@ import { EditUserComponent } from './create-user/components/edit-user/edit-user.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatButtonModule,
     MatSidenavModule,
-    MatIconModule,
-    CountrySearchEngineModule,
-    ViewsModule,
+    SearchEngineModule,
     SharedModule,
     AuthModule,
-    MatCardModule,
-    MatInputModule
+    LayoutModule,
+    HomeModule,
+    CreateUserModule,
+    EditUserModule,
+    UserDetailsModule,
+    UsersListModule,
+    MatSidenavModule
   ],
   providers: [HttpClientModule, CountryDataService],
   bootstrap: [AppComponent]

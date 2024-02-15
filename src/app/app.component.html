@@ -13,6 +13,8 @@
     </main>
   </div>
   <mat-sidenav #sidenav class="nav" (opened)="false" [fixedInViewport]="true">
-    <app-sidenav (sidenavRoute)="onSelectLink($event)"></app-sidenav>
+    <app-sidenav (sidenavRoute)="onSelectLink($event)">
+
+    </app-sidenav>
   </mat-sidenav>
 </mat-sidenav-container>

@@ -4,17 +4,24 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 
-import { UserFormComponent } from "./ui/user-form/user-form.component";
+import { EditUserComponent } from "./containers/edit-user.component";
+///////////////////////TODO
+import { SharedModule } from "../../shared/shared.module";
+import { UserFormComponent } from "../../shared/ui/user-form/user-form.component";
 
 @NgModule({
-  declarations: [UserFormComponent],
+  declarations: [EditUserComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    SharedModule
   ],
-  exports: [UserFormComponent]
+  exports: [
+    EditUserComponent,
+    UserFormComponent
+  ]
 })
-export class SharedModule {}
+export class EditUserModule {}
