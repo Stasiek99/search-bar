@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { User } from "../user/interfaces/user.interface";
 import { UserStateService } from "../user/services/user-state.service";
 import { DialogCreateUserComponent } from "./components/dialog-create-user/dialog-create-user.component";
+import { CreatedUserSnackbarComponent } from "./components/created-user-snackbar/created-user-snackbar.component";
 
 @Component({
   selector: 'app-create-user',
@@ -12,8 +14,8 @@ import { DialogCreateUserComponent } from "./components/dialog-create-user/dialo
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent {
-
-  constructor(private userService: UserStateService, private router: Router, private dialog: MatDialog) {
+  durationInSeconds = 5;
+  constructor(private userService: UserStateService, private router: Router, private dialog: MatDialog, private _snackbar: MatSnackBar) {
   }
 
   openDialog(userData: User): void {
@@ -23,9 +25,16 @@ export class CreateUserComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userService.setUser(userData);
+        this.userService.addUser(userData);
+        this.openSnackBar();
         this.redirectToUserPreview();
       }
+    });
+  }
+
+  openSnackBar(): void {
+    this._snackbar.openFromComponent(CreatedUserSnackbarComponent, {
+      duration: this.durationInSeconds * 1000
     });
   }
 

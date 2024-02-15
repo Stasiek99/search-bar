@@ -1,24 +1,44 @@
-h3 {
-  background-color: #ffdead ;
-  width: 100%;
-}
+//h3 {
+//  background-color: #ffdead ;
+//  width: 100%;
+//}
+//
+//ul li {
+//  padding: 5px 30px;
+//  color: #2F3C7E;
+//}
+//
+//ul li button {
+//  color: #2F3C7E;
+//  background-color: #FBEAEB;
+//}
+//
+//.nav {
+//  display: flex;
+//  list-style-type: none;
+//  padding: 0;
+//}
+//
+//.nav__item {
+//  margin-right: 15px;
+//}
 
-ul li {
-  padding: 5px 30px;
-  color: #2F3C7E;
-}
-
-ul li button {
-  color: #2F3C7E;
-  background-color: #FBEAEB;
-}
-
-.nav {
+.app-header {
   display: flex;
-  list-style-type: none;
-  padding: 0;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
 }
 
-.nav__item {
-  margin-right: 15px;
+.app-header button {
+  margin-right: auto; /* Przesuwa button na lewą stronę */
+}
+
+.app-title {
+  flex: 1; /* Elastyczny element, aby napis był na środku */
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333333;
+  text-align: center; /* Wyrównanie tekstu na środku */
 }

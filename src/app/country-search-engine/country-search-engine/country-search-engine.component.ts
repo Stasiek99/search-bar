@@ -28,9 +28,11 @@ export class CountrySearchEngineComponent implements OnInit{
   }
 
   onSubmitted(): void {
-    const tmp: CountrySearched = this.createUniqueSearchedCountry(this.inputValue);
-    this.countrySearchStateService.onSubmitted(tmp);
-    this.redirectToGoogle();
+    if (this.inputValue.trim() !== "") {
+      const tmp: CountrySearched = this.createUniqueSearchedCountry(this.inputValue);
+      this.countrySearchStateService.onSubmitted(tmp);
+      this.redirectToGoogle();
+    }
   }
 
   onSearchBarInputChanged(searchString: string): void {
@@ -43,6 +45,22 @@ export class CountrySearchEngineComponent implements OnInit{
     const tmp: CountrySearched = this.createUniqueSearchedCountry(this.inputValue);
     this.countrySearchStateService.onSubmitted(tmp);
     this.redirectToGoogle();
+  }
+
+  onSelectAutoCompleteElements(countryName: string): void {
+    this.inputValue = countryName;
+    this.onSubmitted();
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      this.onSubmitted();
+    }
+  }
+
+  shouldShowAutoCompleteList(): boolean {
+    return this.inputValue.trim() !== "" && this.filteredCountries.length > 0;
   }
 
   private getFilteredCountries(searchString: string): CountryElement[] {

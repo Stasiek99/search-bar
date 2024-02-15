@@ -17,14 +17,14 @@ export class UserPresentationComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user = this.userService.getUser() as User;
+    this.user = this.userService.getLastAddedUser();
     if (this.user) {
       this.isButtonVisible = true;
     }
   }
 
   deleteUser(): void {
-    this.userService.deleteUser();
+    this.userService.deleteLastAddedUser();
     this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
       this.router.navigate(["/", "user"]);
     });
@@ -32,5 +32,9 @@ export class UserPresentationComponent implements OnInit{
 
   redirectToEditUser(): void {
     this.router.navigate(["/", "edit-user"]);
+  }
+
+  redirectToCreateUser(): void {
+    this.router.navigate(["/", "create-new-user"]);
   }
 }
