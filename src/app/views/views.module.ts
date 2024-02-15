@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
@@ -22,6 +23,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     SidenavComponent
   ],
   imports: [
+    CommonModule,
     UserModule,
     MatToolbarModule,
     MatSidenavModule,

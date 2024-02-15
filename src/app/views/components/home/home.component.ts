@@ -12,6 +12,7 @@ import { CountryDataService } from "../../../country-search-engine/services/coun
 export class HomeComponent implements OnInit{
   private allCountries: CountryElement[] = [];
   countriesNames: string = "";
+  errorOccurred = false;
   constructor(private http: HttpClient, private countryDataService: CountryDataService) {
   }
 
@@ -22,6 +23,9 @@ export class HomeComponent implements OnInit{
         this.countriesNames = this.allCountries.map((value => {
           return `${value.name}`
         })).toString();
+      }, error => {
+        this.errorOccurred = true;
+        console.log(error.message);
       });
   }
 }
