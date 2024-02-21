@@ -6,7 +6,7 @@ import { UserInterface } from "../../feature-user-details/interfaces/user.interf
   providedIn: "root"
 })
 export class UserLocalStorageService {
-  private readonly userStorageItemKey: string = "List of Users";
+  private readonly userStorageItemKey: string = "users_list";
 
   addUser(usersValues: UserInterface[]): void {
     window.localStorage.setItem(this.userStorageItemKey, JSON.stringify(usersValues));

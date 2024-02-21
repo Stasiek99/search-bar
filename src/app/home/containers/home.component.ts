@@ -10,8 +10,7 @@ import { CountryDataService } from "../../search-engine/feature-search-engine/se
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  private allCountries: CountryElementInterface[] = [];
-  countriesNames: string = "";
+  countriesNames: string | null = null;
   errorOccurred = false;
   constructor(private http: HttpClient, private countryDataService: CountryDataService) {
   }
@@ -19,13 +18,15 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.countryDataService.httpGetData()
       .subscribe(countries => {
-        this.allCountries = countries;
-        this.countriesNames = this.allCountries.map((value => {
-          return `${value.name}`
-        })).toString();
-      }, error => {
+        this.countriesNames = this.getCountriesNames(countries);
+      }, () => {
         this.errorOccurred = true;
-        console.log(error.message);
       });
+  }
+
+  getCountriesNames(countriesNames: CountryElementInterface[]): string {
+    return countriesNames.map((value => {
+      return value.name
+    })).join(" / ");
   }
 }

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { UserInterface } from "../../../users/feature-user-details/interfaces/user.interface";
+import { UserStateService } from "../../../users/feature-create-user/services/user-state.service";
 
 @Component({
   selector: 'app-user-form',

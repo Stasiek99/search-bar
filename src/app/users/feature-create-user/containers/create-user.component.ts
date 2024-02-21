@@ -15,7 +15,7 @@ import { SnackbarComponent } from "../components/snackbar/snackbar.component";
 })
 export class CreateUserComponent {
   durationInSeconds = 5;
-  constructor(private userService: UserStateService, private router: Router, private dialog: MatDialog, private _snackbar: MatSnackBar) {
+  constructor(private userService: UserStateService, private router: Router, private dialog: MatDialog, private snackbar: MatSnackBar) {
   }
 
   openDialog(userData: UserInterface): void {
@@ -33,7 +33,7 @@ export class CreateUserComponent {
   }
 
   openSnackBar(): void {
-    this._snackbar.openFromComponent(SnackbarComponent, {
+    this.snackbar.openFromComponent(SnackbarComponent, {
       duration: this.durationInSeconds * 1000
     });
   }

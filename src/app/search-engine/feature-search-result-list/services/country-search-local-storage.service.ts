@@ -4,7 +4,7 @@ import { CountrySearchedInterface } from "../interfaces/country-searched.interfa
 
 @Injectable()
 export class CountrySearchLocalStorageService {
-  private readonly countriesStorageItemKey = "List of searched countries"
+  private readonly countriesStorageItemKey = "countries_list";
 
   setItem(listOfSearchedCountries: CountrySearchedInterface[]): void {
     window.localStorage.setItem(this.countriesStorageItemKey, JSON.stringify(listOfSearchedCountries));
