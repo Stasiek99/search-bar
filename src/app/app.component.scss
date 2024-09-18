@@ -1,0 +1,60 @@
+h1 {
+  background-color: #F0FFF0;
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 4rem;
+}
+
+.search-bar {
+  display: block;
+  padding: 1.5rem 1rem;
+  width: 90%;
+  max-width: 650px;
+}
+
+.search-results {
+  margin: 1rem auto 0 auto;
+  width: 90%;
+  max-width: 650px;
+}
+
+hr {
+  background-color: lightgrey;
+  border: none;
+  height: 0.5px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  border-bottom: 1px solid gray;
+}
+
+li:hover {
+  border-bottom: 1px solid cornflowerblue;
+  color: cornflowerblue;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+section, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+section.search-results {
+  margin-top: 0;
+}
+
+.search-bar__wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0;
+}
