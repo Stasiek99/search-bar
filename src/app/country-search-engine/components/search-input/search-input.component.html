@@ -1,0 +1,2 @@
+<input type="text" class="search-bar" [(ngModel)]="inputValue" (ngModelChange)="onChangeSearchBarInput(inputValue)">
+<button [disabled]="!inputValue" (click)="onSubmit()">Search</button>
