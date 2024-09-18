@@ -4,9 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { JsonPipe, NgForOf } from "@angular/common";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 
-import { Country } from "./interfaces/country.interface";
-import { listOfCountries } from "../../public/db.mock";
-
 export interface JSONCountry {
   name: string;
   code: string;
@@ -25,7 +22,6 @@ export class AppComponent implements OnInit {
   private readonly jsonURL = "countries.json";
   private readonly urlFragment = "https://www.google.com/search?q=";
 
-  filteredCountries: Country[] = [];
   inputValue = "";
   jsonCountries: JSONCountry[] = [];
 
@@ -39,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   onChangesSearchBarInput(searchString: string): void {
-    this.filteredCountries = this.getFilteredCountries(searchString);
+    this.jsonCountries = this.getFilteredCountries(searchString);
   }
 
   onSelectAutoCompleteElements(labelElement: string): void {
@@ -56,7 +52,9 @@ export class AppComponent implements OnInit {
     window.location.href = searchRedirectUrlWithQuery;
   }
 
-  private getFilteredCountries(searchString: string): Country[] {
-    return listOfCountries.filter(elem => elem.label.includes(searchString));
+  private getFilteredCountries(searchString: string): JSONCountry[] {
+    return this.jsonCountries.filter(elem => elem.name.toLowerCase().includes(searchString));
   }
+
+  protected readonly JsonPipe = JsonPipe;
 }
