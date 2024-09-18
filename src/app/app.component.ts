@@ -4,38 +4,36 @@ import { FormsModule } from "@angular/forms";
 import { JsonPipe, NgForOf } from "@angular/common";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 
-export interface JSONCountry {
-  name: string;
-  code: string;
-}
+import { CountryElement } from "./interfaces/country-element.interface";
+import { CountryDataService } from "./services/country-data.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, NgForOf, JsonPipe, HttpClientModule],
+  providers: [CountryDataService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   title = 'search_bar';
 
-  private readonly jsonURL = "countries.json";
   private readonly urlFragment = "https://www.google.com/search?q=";
 
   inputValue = "";
-  jsonCountries: JSONCountry[] = [];
+  allCountries: CountryElement[] = [];
+  filteredCountries: CountryElement[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private countryDataService: CountryDataService) {}
 
   ngOnInit(): void {
-    this.http.get<(JSONCountry)[]>(this.jsonURL).subscribe(countries => {
-      console.log(countries);
-      this.jsonCountries = countries;
+    this.countryDataService.httpGetData().subscribe(countries => {
+      this.allCountries = countries;
     });
   }
 
   onChangesSearchBarInput(searchString: string): void {
-    this.jsonCountries = this.getFilteredCountries(searchString);
+    this.filteredCountries = this.getFilteredCountries(searchString);
   }
 
   onSelectAutoCompleteElements(labelElement: string): void {
@@ -52,9 +50,7 @@ export class AppComponent implements OnInit {
     window.location.href = searchRedirectUrlWithQuery;
   }
 
-  private getFilteredCountries(searchString: string): JSONCountry[] {
-    return this.jsonCountries.filter(elem => elem.name.toLowerCase().includes(searchString));
+  private getFilteredCountries(searchString: string): CountryElement[] {
+    return this.allCountries.filter(elem => elem.name.toLowerCase().includes(searchString.toLowerCase()));
   }
-
-  protected readonly JsonPipe = JsonPipe;
 }
