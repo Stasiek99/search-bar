@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 
 import { CountryElement } from "../../interfaces/country-element.interface";
 import { CountryDataService } from "../../services/country-data.service";
@@ -8,7 +9,7 @@ import { SearchAutocompleteComponent } from "../../components/search-autocomplet
 @Component({
   selector: 'app-country-search-engine',
   standalone: true,
-  imports: [ SearchInputComponent, SearchAutocompleteComponent],
+  imports: [ SearchInputComponent, SearchAutocompleteComponent, HttpClientModule],
   providers: [CountryDataService],
   templateUrl: './country-search-engine.component.html',
   styleUrl: './country-search-engine.component.scss'
