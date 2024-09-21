@@ -28,4 +28,8 @@ export class AppComponent {
   goToCreateUser(): void {
     this.router.navigate(["/", "create-user"]);
   }
+
+  goToUserPresentation(): void {
+    this.router.navigate(["/", "user"]);
+  }
 }
