@@ -1,16 +1,16 @@
 <app-header></app-header>
 <ul class="nav navbar-nav">
   <li>
-    <a (click)="goToHome()">Home</a>
+    <button mat-raised-button><a (click)="goToHome()">Home</a></button>
   </li>
   <li>
-    <a (click)="goToSearchBar()">Search Bar</a>
+    <button mat-raised-button><a (click)="goToSearchBar()">Search Bar</a></button>
   </li>
   <li>
-    <a (click)="goToCreateUser()">Create New User</a>
+    <button mat-raised-button><a (click)="goToCreateUser()">Create New User</a></button>
   </li>
   <li>
-    <a (click)="goToUserPresentation()">User Data Preview</a>
+    <button mat-raised-button><a (click)="goToUserPresentation()">User Data Preview</a></button>
   </li>
 </ul>
 <router-outlet></router-outlet>
