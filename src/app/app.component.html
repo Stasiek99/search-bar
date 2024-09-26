@@ -1,17 +1,11 @@
-<app-header></app-header>
-<ul class="nav navbar-nav">
-  <li>
-    <button mat-raised-button><a (click)="goToHome()">Home</a></button>
-  </li>
-  <li>
-    <button mat-raised-button><a (click)="goToSearchBar()">Search Bar</a></button>
-  </li>
-  <li>
-    <button mat-raised-button><a (click)="goToCreateUser()">Create New User</a></button>
-  </li>
-  <li>
-    <button mat-raised-button><a (click)="goToUserPresentation()">User Data Preview</a></button>
-  </li>
-</ul>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="wrapper">
+  <div class="header__wrapper">
+    <app-header></app-header>
+  </div>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+  <div class="footer__wrapper">
+    <app-footer></app-footer>
+  </div>
+</div>

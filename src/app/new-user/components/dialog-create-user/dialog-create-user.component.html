@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>New User Created!</h2>
+<mat-dialog-content class="dialog-content">
+  <h3>Are you sure you want to continue?</h3>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button class="dialog-submit" [mat-dialog-close]="data">Submit</button>
+  <button mat-raised-button class="dialog-close" (click)="onCloseClicked()">Close</button>
+</mat-dialog-actions>

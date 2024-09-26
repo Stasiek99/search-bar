@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { CountrySearchEngineComponent } from "./country-search-engine/containers/country-search-engine/country-search-engine.component";
 import { HeaderComponent } from "./views/header/header.component";
 import { FooterComponent } from "./views/footer/footer.component";
-import {MatButton} from "@angular/material/button";
+import { MatButton } from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
@@ -15,22 +15,4 @@ import {MatButton} from "@angular/material/button";
 })
 export class AppComponent {
   title = 'search_bar';
-
-  constructor(private router: Router) {}
-
-  goToHome(): void {
-    this.router.navigate(["/", "home"]);
-  }
-
-  goToSearchBar(): void {
-    this.router.navigate(["/", "search-bar"]);
-  }
-
-  goToCreateUser(): void {
-    this.router.navigate(["/", "create-user"]);
-  }
-
-  goToUserPresentation(): void {
-    this.router.navigate(["/", "user"]);
-  }
 }
