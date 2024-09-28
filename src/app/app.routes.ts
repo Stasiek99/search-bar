@@ -5,6 +5,7 @@ import { CountrySearchEngineComponent } from "./country-search-engine/containers
 import { NotFoundComponent } from "./views/not-found/not-found.component";
 import { CreateUserComponent } from "./new-user/components/create-user/create-user.component";
 import { UserPresentationComponent } from "./new-user/components/user-presentation/user-presentation.component";
+import { EditUserComponent } from "./new-user/components/edit-user/edit-user.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: "search-bar", component: CountrySearchEngineComponent },
   { path: "create-user", component: CreateUserComponent },
   { path: "user", component: UserPresentationComponent },
+  { path: "edit-user", component: EditUserComponent },
   { path: "**", pathMatch: "full", component: NotFoundComponent }
 ];

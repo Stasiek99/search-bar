@@ -7,10 +7,10 @@ import { MatButton } from "@angular/material/button";
   selector: 'app-header',
   standalone: true,
   imports: [
-    MatButton
+    MatButton,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   constructor(private router: Router) {

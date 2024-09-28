@@ -1,25 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { NgIf } from "@angular/common";
+
+import { MatButton } from "@angular/material/button";
 
 import { User } from "../../interfaces/user.interface";
-import { NgIf } from "@angular/common";
-import { UserService } from "../../services/user.service";
+import { UserStateService } from "../../services/user-state.service";
 
 @Component({
   selector: 'app-user-presentation',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    MatButton
   ],
   templateUrl: './user-presentation.component.html',
   styleUrl: './user-presentation.component.scss'
 })
 export class UserPresentationComponent implements OnInit {
   user: User | null = null;
+  isButtonVisible = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userStateService: UserStateService, private router: Router) {}
 
   ngOnInit(): void {
-    this.user = this.userService.getUser() as User;
-    console.log(this.user);
+    this.user = this.userStateService.getUser() as User;
+    if (this.user) {
+      this.isButtonVisible = true;
+    }
+  }
+
+  deleteUser(): void {
+    this.userStateService.deleteUser();
+    this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
+      this.router.navigate(["/", "user"]);
+    })
+  }
+
+  redirectToEditUser(): void {
+    this.router.navigate(["/", "edit-user"]);
   }
 }
