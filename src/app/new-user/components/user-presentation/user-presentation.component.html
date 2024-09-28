@@ -1,6 +1,11 @@
 <ng-container *ngIf="user">
-  <p>Hello {{ user.name }}</p>
-  <p>Your login {{ user.login }}</p>
-  <p>Name of your country: {{ user.country }}</p>
-  <p>Your age: {{ user.age }}</p>
+  <p>Hello {{user.name}}</p>
+  <p>Your login: {{user.login}}</p>
+  <p>Name of your country: {{user.country}}</p>
+  <p>Your age: {{user.age}}</p>
+  <div>
+    <button mat-raised-button *ngIf="isButtonVisible" (click)="deleteUser()">Delete User</button>
+    <button mat-raised-button *ngIf="isButtonVisible" (click)="redirectToEditUser()">Edit User</button>
+  </div>
+
 </ng-container>
