@@ -1,4 +1,4 @@
-html, body { height: 100%; width: 100%; }
+html, body { height: 100%; width: 100%; font-size: 14px}
 body {
   margin: 0 auto;
   padding: 0;
@@ -9,10 +9,6 @@ body {
 button, textarea, input, select {
   font-size: 100%;
   font-family: inherit;
-}
-
-.red {
-  border: 1px solid red;
 }
 
 div, ul, p, li {
