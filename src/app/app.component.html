@@ -1,11 +1,18 @@
-<div class="wrapper">
-  <div class="header__wrapper">
-    <app-header></app-header>
+<mat-sidenav-container [autosize]="true">
+  <div class="wrapper">
+    <main>
+      <div class="header__wrapper">
+        <app-header (menuIconClicked)="onMenuIconClicked()"></app-header>
+      </div>
+      <main class="main-wrapper">
+        <router-outlet></router-outlet>
+      </main>
+      <div class="footer__wrapper">
+        <app-footer></app-footer>
+      </div>
+    </main>
   </div>
-  <main class="main-content">
-    <router-outlet></router-outlet>
-  </main>
-  <div class="footer__wrapper">
-    <app-footer></app-footer>
-  </div>
-</div>
+  <mat-sidenav #sidenav class="nav" (opened)="false" fixedInViewport="true">
+    <app-sidenav (sidenavRoute)="onSelectLink($event)"></app-sidenav>
+  </mat-sidenav>
+</mat-sidenav-container>
