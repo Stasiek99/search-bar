@@ -7,16 +7,20 @@ import { CountrySearchLocalStorageService } from "./country-search-local-storage
   providedIn: "root",
 })
 export class CountrySearchStateService {
-  localStorageValue: CountrySearched[];
+  private readonly searchedCountries: CountrySearched[];
   private readonly defaultValue = [];
 
   constructor(private countrySearchLocalStorageService: CountrySearchLocalStorageService) {
     const tmp: CountrySearched[] | null = this.countrySearchLocalStorageService.getData();
-    this.localStorageValue = tmp ?? this.defaultValue;
+    this.searchedCountries = tmp ?? this.defaultValue;
   }
 
   onSubmitted(searchInput: CountrySearched): void {
-    this.localStorageValue.push(searchInput);
-    this.countrySearchLocalStorageService.setItem(this.localStorageValue);
+    this.searchedCountries.push(searchInput);
+    this.countrySearchLocalStorageService.setItem(this.searchedCountries);
+  }
+
+  getSearchedCountries(): CountrySearched[] {
+    return this.searchedCountries;
   }
 }
