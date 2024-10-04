@@ -6,12 +6,13 @@
 
 ul li {
   display: grid;
-  margin-left: 20px;
+  margin-left: 5px;
   padding: 5px 0;
   font-size: 14px;
   text-align: left;
   color: #2F3C7E;
-  transition-property: color, padding-bottom, padding-top, font-size;
+  border-bottom: 2px solid #2F3C7E;
+  transition-property: color, padding-bottom, padding-top, font-size, border-bottom-color;
   transition-duration: 0.5s;
   background-color: #FBEAEB;
 }
@@ -25,6 +26,7 @@ ul li:hover {
 
 ul li .mat-icon {
   margin-right: 10px;
+  transform: translateY(4px);
 }
 
 ul {

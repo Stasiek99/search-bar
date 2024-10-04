@@ -1,0 +1,12 @@
+<table *ngIf="searchedCountries.length > 0" mat-table [dataSource]="searchedCountries" class="table">
+  <ng-container matColumnDef="input">
+    <th mat-header-cell *matHeaderCellDef class="table__header">Searched Input</th>
+    <td mat-cell *matCellDef="let element">{{ element.input }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef class="table__header">Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
