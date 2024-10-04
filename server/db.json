@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "_id": 1,
+      "name": "staszek",
+      "login": "admin",
+      "password": "admin",
+      "country": "Australia",
+      "age": 99
+    },
+    {
+      "_id": 2,
+      "name": "Stasiek",
+      "login": "stasiek",
+      "password": "stasiek",
+      "country": "Poland",
+      "age": 23
+    },
+    {
+      "_id": 3,
+      "name": "krystian",
+      "login": "krystian",
+      "password": "krystian",
+      "country": "Poland",
+      "age": 28
+    }
+  ],
+  "searched-countries": [
+    {
+      "_id": 1,
+      "input": "land Islands",
+      "date": "2022-08-01T20:43:56.281Z",
+      "userId": 1
+    },
+    {
+      "_id": 2,
+      "input": "Poland",
+      "date": "2022-08-01T20:43:56.281Z",
+      "userId": 2
+    },
+    {
+      "_id": 3,
+      "input": "Benin",
+      "date": "2022-08-01T20:43:56.281Z",
+      "userId": 1
+    },
+    {
+      "_id": 4,
+      "input": "Germany",
+      "date": "2022-08-01T20:43:56.281Z",
+      "userId": 3
+    }
+  ]
+}
