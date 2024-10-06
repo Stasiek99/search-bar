@@ -12,6 +12,12 @@
     </a>
   </li>
   <li>
+    <a (click)="onSelectLink(SidenavNavigationType.login)">
+      <mat-icon>login</mat-icon>
+      Log In
+    </a>
+  </li>
+  <li>
     <a (click)="onSelectLink(SidenavNavigationType.search_bar)">
       <mat-icon>search</mat-icon>
       Search Bar
@@ -27,6 +33,12 @@
     <a (click)="onSelectLink(SidenavNavigationType.user_preview)">
       <mat-icon>picture_in_picture</mat-icon>
       User Data Preview
+    </a>
+  </li>
+  <li>
+    <a (click)="onSelectLink(SidenavNavigationType.users_list)">
+      <mat-icon>list_alt</mat-icon>
+      List of Users
     </a>
   </li>
 </ul>

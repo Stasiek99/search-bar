@@ -1,0 +1,28 @@
+.form {
+  justify-content: center;
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.card__header {
+  display: flex;
+}
+
+.card__title {
+  justify-content: center;
+  text-align: center;
+}
+
+.card__input,
+.card__button,
+.card__title {
+  color: #2F3C7E;
+}
