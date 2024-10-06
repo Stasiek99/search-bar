@@ -30,7 +30,7 @@ export class CreateUserComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userStateService.setUser(userData);
+        this.userStateService.addUser(userData);
         this.openSnackBar();
         this.redirectToUserPreview();
       }
@@ -44,6 +44,6 @@ export class CreateUserComponent {
   }
 
   redirectToUserPreview(): void {
-    this.router.navigate(["/", "user"]);
+    this.router.navigate(["/", "user-preview"]);
   }
 }

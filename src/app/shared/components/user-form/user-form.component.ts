@@ -38,6 +38,6 @@ export class UserFormComponent {
   }
 
   redirectToUserPreview(): void {
-    this.router.navigate(["/", "user"]);
+    this.router.navigate(["/", "user-preview"]);
   }
 }

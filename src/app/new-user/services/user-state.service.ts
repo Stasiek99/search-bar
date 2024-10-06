@@ -7,23 +7,35 @@ import { UserLocalStorageService } from "./user-local-storage.service";
   providedIn: "root",
 })
 export class UserStateService {
-  private createdUser: User | null = null;
+  private readonly users: User[];
+  private readonly defaultValue = [];
 
   constructor(private userLocalStorageService: UserLocalStorageService) {
-    this.createdUser = this.userLocalStorageService.getUser();
+    const tmp: User[] | null = this.userLocalStorageService.getUsers();
+    this.users = tmp ?? this.defaultValue;
   }
 
-  setUser(user: User): void {
-    this.createdUser = user;
-    this.userLocalStorageService.setUser(user);
+  addUser(user: User): void {
+    this.users.push(user);
+    this.userLocalStorageService.addUser(this.users);
   }
 
-  getUser(): User | null {
-    return this.createdUser;
+  getLastAddedUser(): User | null {
+    return this.users[this.users.length - 1];
   }
 
-  deleteUser(): void {
-    this.createdUser = null;
-    this.userLocalStorageService.deleteUser();
+  deleteLastAddedUser(): void {
+    this.users.pop();
+    this.userLocalStorageService.deleteLastAddedUser(this.users);
+  }
+
+  editLastAddedUser(editedUser: User): void {
+    this.users.pop();
+    this.users.push(editedUser);
+    this.userLocalStorageService.editLastAddedUser(this.users);
+  }
+
+  getSearchedUsers(): User[] {
+    return this.users;
   }
 }

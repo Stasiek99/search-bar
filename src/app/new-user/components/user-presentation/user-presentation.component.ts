@@ -24,16 +24,16 @@ export class UserPresentationComponent implements OnInit {
   constructor(private userStateService: UserStateService, private router: Router) {}
 
   ngOnInit(): void {
-    this.user = this.userStateService.getUser() as User;
+    this.user = this.userStateService.getLastAddedUser();
     if (this.user) {
       this.isButtonVisible = true;
     }
   }
 
   deleteUser(): void {
-    this.userStateService.deleteUser();
+    this.userStateService.deleteLastAddedUser();
     this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-      this.router.navigate(["/", "user"]);
+      this.router.navigate(["/", "user-preview"]);
     })
   }
 

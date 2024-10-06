@@ -18,6 +18,6 @@ export class EditUserComponent {
   constructor(private userStateService: UserStateService) {}
 
   onFormSubmit(editedUser: User): void {
-    this.userStateService.setUser(editedUser);
+    this.userStateService.addUser(editedUser);
   }
 }
