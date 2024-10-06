@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+
+import { CountryElement } from "../../interfaces/country-element.interface";
 
 @Component({
   selector: 'app-search-input',
@@ -12,7 +14,7 @@ import {FormsModule} from "@angular/forms";
 })
 export class SearchInputComponent {
   @Input() inputValue!: string;
-  @Input() filteredCountries!: any;
+  @Input() filteredCountries: CountryElement | null = null;
   @Output() searchBarChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() submitEvent: EventEmitter<any> = new EventEmitter<any>();
 

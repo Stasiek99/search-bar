@@ -1,4 +1,18 @@
 h4 {
-  background-color: #e7e5ca;
+  text-align: center;
+  position: relative;
+  color: #2F3C7E;
   width: 100%;
+  font-size: 1.4rem;
+}
+
+p {
+  font-weight: bold;
+  justify-content: center;
+  margin-left: 5px;
+  width: 100%;
+}
+
+p span {
+  font-weight: normal;
 }
