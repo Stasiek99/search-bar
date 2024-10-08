@@ -6,8 +6,11 @@ import { CountryElement } from "../../interfaces/country-element.interface";
 import { CountrySearched } from "../../interfaces/country-searched.interface";
 import { SearchInputComponent } from "../../components/search-input/search-input.component";
 import { SearchAutocompleteComponent } from "../../components/search-autocomplete/search-autocomplete.component";
+import { SnackbarSearchAutocompleteErrorComponent } from "../../components/snackbar-search-autocomplete-error/snackbar-search-autocomplete-error.component";
 import { CountryDataService } from "../../services/country-data.service";
 import { CountrySearchStateService } from "../../services/country-search-state.service";
+
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-country-search-engine',
@@ -21,13 +24,18 @@ export class CountrySearchEngineComponent implements OnInit {
   inputValue = "";
   allCountries: CountryElement[] = [];
   filteredCountries: CountryElement[] = [];
+  durationInSeconds = 10;
+  errorMessage: string | null = null;
   private readonly urlFragment = "https://www.google.com/search?q=";
 
-  constructor(private countryDataService: CountryDataService, private countrySearchStateService: CountrySearchStateService) {}
+  constructor(private countryDataService: CountryDataService, private countrySearchStateService: CountrySearchStateService, private _snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.countryDataService.httpGetData().subscribe(countries => {
       this.allCountries = countries;
+    }, error => {
+      this.errorMessage = error.message;
+      this.openErrorSnackBar();
     });
   }
 
@@ -61,6 +69,13 @@ export class CountrySearchEngineComponent implements OnInit {
       event.preventDefault();
       this.onSubmitted();
     }
+  }
+
+  openErrorSnackBar(): void {
+    this._snackbar.openFromComponent(SnackbarSearchAutocompleteErrorComponent, {
+      duration: this.durationInSeconds * 1000,
+      data: this.errorMessage
+    });
   }
 
   shouldShowAutoCompleteList(): boolean {
