@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormsModule, NgForm } from "@angular/forms";
+import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { trigger, state, style, transition, animate } from "@angular/animations";
 
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
@@ -13,31 +12,40 @@ import { User } from "../../../users/feature-user-details/interfaces/user.interf
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInput, MatButton, CommonModule],
+  imports: [ MatFormFieldModule, MatInput, MatButton, CommonModule, ReactiveFormsModule],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
-  animations: [  // Definicja animacji dla @transitionMessages
-    trigger('transitionMessages', [
-      state('in', style({ opacity: 1 })),
-      transition(':enter', [style({ opacity: 0 }), animate('500ms ease-in')]),
-      transition(':leave', [animate('500ms ease-out', style({ opacity: 0 }))])
-    ])
-  ]
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
   @Input() userData: User = {} as User;
   @Output() formSubmit: EventEmitter<User> = new EventEmitter<User>();
 
-  constructor(private router: Router) {}
+  userForm!: FormGroup;
 
-  onFormSubmit(form: NgForm): void {
-    if (form.valid) {
-      this.formSubmit.emit(form.value);
-      this.redirectToUserPreview()
+  constructor(private router: Router, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.userForm = this.fb.group({
+      name: [this.userData.name || "", [Validators.required]],
+      login: [this.userData.login || "", [Validators.required]],
+      password: [this.userData.password || "", [Validators.required]],
+      country: [this.userData.country || "", [Validators.required]],
+      age: [this.userData.age || "", [Validators.required, Validators.min(18)]],
+    })
+  }
+
+  onFormSubmit(): void {
+    if (this.userForm?.valid) {
+      this.formSubmit.emit(this.userForm.value);
+      this.redirectToUserPreview();
     }
   }
 
   redirectToUserPreview(): void {
     this.router.navigate(["/", "user-preview"]);
+  }
+
+  get formControls() {
+    return this.userForm.controls;
   }
 }

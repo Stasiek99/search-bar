@@ -1,4 +1,4 @@
-<ng-container *ngIf="user">
+<ng-container *ngIf="user; else noUser">
   <p>Hello {{user.name}}</p>
   <p>Your login: {{user.login}}</p>
   <p>Name of your country: {{user.country}}</p>
@@ -8,7 +8,7 @@
     <button mat-raised-button *ngIf="isButtonVisible" (click)="redirectToEditUser()">Edit User</button>
   </div>
 </ng-container>
-<ng-container *ngIf="!user">
+<ng-template #noUser>
   <p class="user-not-created">No user has been created</p>
   <button mat-raised-button *ngIf="!this.isButtonVisible" (click)="redirectToCreateUser()" class="button-user-not-created">Create User</button>
-</ng-container>
+</ng-template>
