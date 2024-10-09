@@ -1,29 +1,39 @@
 <div class="userdata">
   <div class="form-container">
-    <form (ngSubmit)="onFormSubmit(f)" #f="ngForm" class="user-form">
+    <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()" class="user-form">
       <div id="form-content">
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" ngModel name="name" required>
+          <input matInput placeholder="Enter your name" formControlName="name">
+          <mat-error *ngIf="formControls['name'].invalid && formControls['name'].touched">Name is required</mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Login</mat-label>
-          <input matInput placeholder="Login" type="text" id="login" class="form-control" ngModel name="login" required>
+          <input matInput placeholder="Enter your login" type="text" formControlName="login">
+          <mat-error *ngIf="formControls['login'].invalid && formControls['login'].touched">Login is required</mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" type="password" id="password" class="form-control" ngModel name="password" required>
+          <input matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error *ngIf="formControls['password'].invalid && formControls['password'].touched">Password is required</mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Country</mat-label>
-          <input matInput placeholder="Country" type="text" id="country" class="form-control" ngModel name="country" required>
+          <input matInput placeholder="Country" type="text" formControlName="country">
+          <mat-error *ngIf="formControls['country'].invalid && formControls['country'].touched">Country is required</mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Age</mat-label>
-          <input matInput placeholder="Age" type="number" id="age" class="form-control" ngModel name="age" required>
+          <input matInput placeholder="Age" type="number" formControlName="age">
+          <mat-error *ngIf="formControls['age'].invalid && formControls['age'].touched">Age is required and must be at least 18</mat-error>
         </mat-form-field>
+
         <div class="submit-button">
-          <button mat-raised-button type="submit" [disabled]="!f.valid">Submit</button>
+          <button mat-raised-button type="submit" [disabled]="userForm.invalid">Submit</button>
         </div>
       </div>
     </form>

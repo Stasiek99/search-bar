@@ -6,7 +6,7 @@ import { CountrySearched } from "../interfaces/country-searched.interface";
   providedIn: "root",
 })
 export class CountrySearchLocalStorageService {
-  private readonly countriesStorageItemKey = "List of searched countries";
+  private readonly countriesStorageItemKey = "countries_list";
 
   setItem(listOfSearchedCountries: CountrySearched[]): void {
     window.localStorage.setItem(this.countriesStorageItemKey, JSON.stringify(listOfSearchedCountries));

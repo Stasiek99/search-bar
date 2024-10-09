@@ -30,12 +30,15 @@ export class UserStateService {
   }
 
   editLastAddedUser(editedUser: User): void {
-    this.users.pop();
-    this.users.push(editedUser);
+    this.users[this.getLastUserIndex()] = editedUser;
     this.userLocalStorageService.editLastAddedUser(this.users);
   }
 
   getSearchedUsers(): User[] {
     return this.users;
+  }
+
+  private getLastUserIndex(): number {
+    return this.users.length - 1;
   }
 }

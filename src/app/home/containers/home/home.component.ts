@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from "@angular/common";
 
 import { CountryElement } from "../../../search-engine/feature-search-engine/interfaces/country-element.interface";
 import { CountryDataService } from "../../../search-engine/feature-search-engine/services/country-data.service";
-import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -15,21 +15,22 @@ import {NgIf} from "@angular/common";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  private allCountries: CountryElement[] = [];
-  countriesNames = "";
+  countriesNames: string | null = null;
   errorOccurred = false;
 
   constructor(private countryDataService: CountryDataService) {}
 
   ngOnInit(): void {
     this.countryDataService.httpGetData().subscribe(countries => {
-      this.allCountries = countries;
-      this.countriesNames = this.allCountries.map((value => {
-        return `${value.name}`
-      })).toString();
-    }, error => {
+      this.countriesNames = this.getCountriesNames(countries);
+    }, () => {
       this.errorOccurred = true;
-      console.log(error.message);
     });
+  }
+
+  private getCountriesNames(countriesNames: CountryElement[]): string {
+    return countriesNames.map((value => {
+      return value.name
+    })).join(" / ");
   }
 }
