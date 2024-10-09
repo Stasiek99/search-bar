@@ -26,4 +26,12 @@ export class UserLocalStorageService {
     window.localStorage.removeItem(this.userStorageItemKey);
     window.localStorage.setItem(this.userStorageItemKey, JSON.stringify(editedUser));
   }
+
+  checkIfUserExist(login: string, password: string): boolean {
+    const users = this.getUsers();
+    if (users) {
+      return users.some(user => user.login === login && user.password === password);
+    }
+    return false;
+  }
 }
