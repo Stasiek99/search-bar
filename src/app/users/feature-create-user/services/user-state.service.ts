@@ -38,6 +38,10 @@ export class UserStateService {
     return this.users;
   }
 
+  checkIfUserExists(login: string, password: string): boolean {
+    return this.userLocalStorageService.checkIfUserExist(login, password);
+  }
+
   private getLastUserIndex(): number {
     return this.users.length - 1;
   }

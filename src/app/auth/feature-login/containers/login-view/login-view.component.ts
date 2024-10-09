@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from "@angular/material/card";
 import { MatFormField, MatSuffix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { MatIcon } from "@angular/material/icon";
-import { MatButton } from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {UserStateService} from "../../../../users/feature-create-user/services/user-state.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-view',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
     MatCard,
     MatCardHeader,
     MatCardContent,
@@ -21,7 +22,9 @@ import { MatButton } from "@angular/material/button";
     MatSuffix,
     MatCardActions,
     MatButton,
-    MatCardTitle
+    MatCardTitle,
+    ReactiveFormsModule,
+    MatIconButton
   ],
   templateUrl: './login-view.component.html',
   styleUrl: './login-view.component.scss'
@@ -33,7 +36,20 @@ export class LoginViewComponent {
     "password": new FormControl(null, Validators.required)
   });
 
+  constructor(private userStateService: UserStateService, private router: Router) {}
+
   onSubmit(): void {
-    console.log(this.loginForm.value);
+    const { login, password } = this.loginForm.value;
+    const userExists = this.userStateService.checkIfUserExists(login, password);
+    if (userExists) {
+      console.log("User logged in successfully");
+      this.redirectToUserDashboard();
+    } else {
+      console.log("Invalid login credentials");
+    }
+  }
+
+  private redirectToUserDashboard(): void {
+    this.router.navigate(['/', "user-preview"]);
   }
 }
