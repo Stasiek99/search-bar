@@ -6,3 +6,12 @@
   color: #2F3C7E;
   font-size: 16px;
 }
+
+.table__clickable {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}

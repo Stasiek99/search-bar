@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { NgIf } from "@angular/common";
 
+import { MatSnackBar } from "@angular/material/snack-bar";
+
 import { CountryElement } from "../../interfaces/country-element.interface";
 import { CountrySearched } from "../../../feature-search-result-list/interfaces/country-searched.interface";
 import { SearchInputComponent } from "../../components/search-input/search-input.component";
@@ -9,8 +11,6 @@ import { SearchAutocompleteComponent } from "../../components/search-autocomplet
 import { SnackbarSearchAutocompleteErrorComponent } from "../../components/snackbar/snackbar-search-autocomplete-error.component";
 import { CountryDataService } from "../../services/country-data.service";
 import { CountrySearchStateService } from "../../../feature-search-result-list/services/country-search-state.service";
-
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-country-search-engine',
@@ -95,6 +95,6 @@ export class CountrySearchEngineComponent implements OnInit {
 
   private redirectToGoogle(): void {
     const searchRedirectWithQuery: string = this.urlFragment + this.inputValue;
-    window.location.href = searchRedirectWithQuery;
+    window.open(searchRedirectWithQuery, "_blank");
   }
 }

@@ -39,6 +39,10 @@ export class SearchResultListComponent implements OnInit {
     this.searchedCountries = this.countrySearchStateService.getSearchedCountries();
   }
 
+  reSearch(search: string): void {
+    this.countrySearchStateService.reSearch(search);
+  }
+
   clearHistory(): void {
     this.countrySearchStateService.clearSearchHistory();
     this.searchedCountries = [];
