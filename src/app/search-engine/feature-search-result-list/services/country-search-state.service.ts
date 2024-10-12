@@ -10,6 +10,8 @@ import { UserStateService } from "../../../users/feature-create-user/services/us
 export class CountrySearchStateService {
   private readonly maxSearchHistory = 15;
   private searchedCountries: CountrySearched[] = [];
+  private readonly urlFragment = "https://www.google.com/search?q=";
+  inputValue = "";
 
   constructor(private countrySearchLocalStorageService: CountrySearchLocalStorageService, private userStateService: UserStateService) {
     this.loadUserHistory();
@@ -45,6 +47,25 @@ export class CountrySearchStateService {
     if (userLogin) {
       const tmp: CountrySearched[] | null = this.countrySearchLocalStorageService.getData(userLogin);
       this.searchedCountries = tmp ?? [];
+    }
+  }
+
+  reSearch(searchInput: string): void {
+    this.inputValue = searchInput;
+    const tmp: CountrySearched = this.createUniqueSearchedCountry(this.inputValue);
+    this.onSubmitted(tmp);
+    this.redirectToGoogle();
+  }
+
+  private redirectToGoogle(): void {
+    const searchRedirectWithQuery: string = this.urlFragment + this.inputValue;
+    window.open(searchRedirectWithQuery, "_blank");
+  }
+
+  private createUniqueSearchedCountry(input: string): CountrySearched {
+    return {
+      input,
+      date: (new Date()).toISOString()
     }
   }
 }
