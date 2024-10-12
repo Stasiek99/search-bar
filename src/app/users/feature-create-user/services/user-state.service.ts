@@ -42,6 +42,10 @@ export class UserStateService {
     return this.userLocalStorageService.checkIfUserExist(login, password);
   }
 
+  getLoggedInUser(): User | null {
+    return this.loggedInUser;
+  }
+
   ///////TODO: Refactor code below
 
   getLastAddedUser(): User | null {
