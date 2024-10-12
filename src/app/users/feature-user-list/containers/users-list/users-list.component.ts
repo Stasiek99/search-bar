@@ -39,6 +39,6 @@ export class UsersListComponent implements OnInit {
   constructor(private userStateService: UserStateService) {}
 
   ngOnInit(): void {
-    this.users = this.userStateService.getSearchedUsers();
+    this.users = this.userStateService.getUsers();
   }
 }

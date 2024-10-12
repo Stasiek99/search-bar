@@ -6,14 +6,25 @@ import { CountrySearched } from "../interfaces/country-searched.interface";
   providedIn: "root",
 })
 export class CountrySearchLocalStorageService {
-  private readonly countriesStorageItemKey = "countries_list";
+  private readonly searchHistoryKeyPrefix = "search_history_";
 
-  setItem(listOfSearchedCountries: CountrySearched[]): void {
-    window.localStorage.setItem(this.countriesStorageItemKey, JSON.stringify(listOfSearchedCountries));
+  setItem (userLogin: string, listOfSearchedCountries: CountrySearched[]): void {
+    const key = this.getUserKey(userLogin);
+    window.localStorage.setItem(key, JSON.stringify(listOfSearchedCountries));
   }
 
-  getData(): CountrySearched[] | null {
-    const objectToParse: string | null = window.localStorage.getItem(this.countriesStorageItemKey);
+  getData(userLogin: string): CountrySearched[] | null {
+    const key = this.getUserKey(userLogin);
+    const objectToParse: string | null = window.localStorage.getItem(key);
     return objectToParse ? JSON.parse(objectToParse) : null;
+  }
+
+  clearSearchHistory(userLogin: string): void {
+    const key = this.getUserKey(userLogin);
+    window.localStorage.removeItem(key);
+  }
+
+  private getUserKey(userLogin: string): string {
+    return `${this.searchHistoryKeyPrefix}${userLogin}`;
   }
 }

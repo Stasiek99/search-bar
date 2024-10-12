@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgIf } from "@angular/common";
 
 import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable } from "@angular/material/table";
+import { MatCardModule } from "@angular/material/card";
+import { MatButton } from "@angular/material/button";
 
 import { CountrySearched } from "../../interfaces/country-searched.interface";
 import { CountrySearchStateService } from "../../services/country-search-state.service";
@@ -20,18 +22,25 @@ import { CountrySearchStateService } from "../../services/country-search-state.s
     MatHeaderRow,
     MatHeaderRowDef,
     MatRow,
-    MatRowDef
+    MatRowDef,
+    MatCardModule,
+    MatButton
   ],
   templateUrl: './search-result-list.component.html',
   styleUrl: './search-result-list.component.scss'
 })
 export class SearchResultListComponent implements OnInit {
-  constructor(private countrySearchStateService: CountrySearchStateService) {}
-
   searchedCountries: CountrySearched[] = [];
   readonly displayedColumns: string[] = ["input", "date"];
 
+  constructor(private countrySearchStateService: CountrySearchStateService) {}
+
   ngOnInit(): void {
     this.searchedCountries = this.countrySearchStateService.getSearchedCountries();
+  }
+
+  clearHistory(): void {
+    this.countrySearchStateService.clearSearchHistory();
+    this.searchedCountries = [];
   }
 }

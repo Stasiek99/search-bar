@@ -9,6 +9,7 @@ import { UserLocalStorageService } from "./user-local-storage.service";
 export class UserStateService {
   private readonly users: User[];
   private readonly defaultValue = [];
+  private loggedInUser: User | null = null;
 
   constructor(private userLocalStorageService: UserLocalStorageService) {
     const tmp: User[] | null = this.userLocalStorageService.getUsers();
@@ -19,6 +20,33 @@ export class UserStateService {
     this.users.push(user);
     this.userLocalStorageService.addUser(this.users);
   }
+
+  loginUser(login: string, password: string): boolean {
+    const userExists = this.checkIfUserExists(login, password);
+    if (userExists) {
+      this.loggedInUser = this.users.find(user => user.login === login && user.password === password) || null;
+      return true;
+    }
+    return false
+  }
+
+  logoutUser(): void {
+    this.loggedInUser = null;
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.loggedInUser !== null;
+  }
+
+  checkIfUserExists(login: string, password: string): boolean {
+    return this.userLocalStorageService.checkIfUserExist(login, password);
+  }
+
+  getLoggedInUser(): User | null {
+    return this.loggedInUser;
+  }
+
+  ///////TODO: Refactor code below
 
   getLastAddedUser(): User | null {
     return this.users[this.users.length - 1];
@@ -34,12 +62,8 @@ export class UserStateService {
     this.userLocalStorageService.editLastAddedUser(this.users);
   }
 
-  getSearchedUsers(): User[] {
+  getUsers(): User[] {
     return this.users;
-  }
-
-  checkIfUserExists(login: string, password: string): boolean {
-    return this.userLocalStorageService.checkIfUserExist(login, password);
   }
 
   private getLastUserIndex(): number {
