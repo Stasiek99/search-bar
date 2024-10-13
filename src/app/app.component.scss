@@ -11,10 +11,10 @@ html, body {
 
 .main-wrapper {
   flex-grow: 1;
+  min-height: 80vh;
 }
 
 .footer__wrapper {
-  position: relative;
   width: 100%;
   flex-shrink: 0;
 }
