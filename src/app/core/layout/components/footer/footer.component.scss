@@ -1,6 +1,10 @@
-footer {
-  background-color: #fad1d1;
+.footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+
+}
+
+.footer__button {
+  color: var(--hover-over);
 }

@@ -1,3 +1,15 @@
+@import "theming";
+
+:root {
+  --primary: #212121;
+  --primary-light: #F4CFCD;
+  --primary-dark: #212121;
+  --ripple: #D5E9AA;
+  --background: #fff;
+  --error: #C70133;
+  --hover-over: #FE7143
+}
+
 html, body { height: 100%; width: 100%; font-size: 14px}
 body {
   margin: 0 auto;
