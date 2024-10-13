@@ -4,8 +4,7 @@
   width: 100%;
   text-align: center;
   padding: 20px 0;
-  position: relative;
-  bottom: 0;
+  flex-shrink: 0;
 }
 
 .footer__info p {
@@ -14,7 +13,7 @@
 
 .footer__button {
   color: var(--hover-over);
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 mat-divider {
