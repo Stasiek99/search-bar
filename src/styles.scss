@@ -10,7 +10,7 @@
   --hover-over: #FE7143
 }
 
-html, body { height: 100%; width: 100%; font-size: 14px}
+html, body { height: 100%; width: 100vw; font-size: 14px; box-sizing: border-box; }
 body {
   margin: 0 auto;
   padding: 0;
