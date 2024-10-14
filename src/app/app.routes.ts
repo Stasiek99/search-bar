@@ -9,17 +9,20 @@ import { EditUserComponent } from "./users/feature-edit-user/containers/edit-use
 import { SearchResultListComponent } from "./search-engine/feature-search-result-list/containers/search-result-list/search-result-list.component";
 import { LoginViewComponent } from "./auth/feature-login/containers/login-view/login-view.component";
 import { UsersListComponent } from "./users/feature-user-list/containers/users-list/users-list.component";
-import { AuthGuard } from "./auth/feature-login/guards/auth.guard";
+import { UserAuthGuard } from "./auth/guards/user-auth.guard";
+import { AdminPanelComponent } from "./users/admin/admin-panel/admin-panel.component";
+import { AdminAuthGuard } from "./auth/guards/admin-auth.guard";
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "search-bar", component: CountrySearchEngineComponent },
-  { path: "search-result-list", component: SearchResultListComponent, canActivate: [AuthGuard] },
+  { path: "search-result-list", component: SearchResultListComponent, canActivate: [UserAuthGuard] },
   { path: "login", component: LoginViewComponent },
   { path: "new-user", component: CreateUserComponent },
   { path: "user-preview", component: UserDetailsComponent },
   { path: "users-list", component: UsersListComponent },
   { path: "edit-user", component: EditUserComponent },
+  { path: "admin-panel", component: AdminPanelComponent, canActivate: [AdminAuthGuard] },
   { path: "**", pathMatch: "full", component: NotFoundComponent }
 ];

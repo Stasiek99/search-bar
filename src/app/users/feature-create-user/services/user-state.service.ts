@@ -17,6 +17,7 @@ export class UserStateService {
   }
 
   addUser(user: User): void {
+    user.role = "user";
     this.users.push(user);
     this.userLocalStorageService.addUser(this.users);
   }
@@ -34,11 +35,15 @@ export class UserStateService {
     this.loggedInUser = null;
   }
 
+  isUserAdmin(): boolean {
+    return this.loggedInUser?.role === "admin";
+  }
+
   isUserLoggedIn(): boolean {
     return this.loggedInUser !== null;
   }
 
-  checkIfUserExists(login: string, password: string): boolean {
+  private checkIfUserExists(login: string, password: string): boolean {
     return this.userLocalStorageService.checkIfUserExist(login, password);
   }
 
