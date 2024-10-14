@@ -23,6 +23,6 @@ export const routes: Routes = [
   { path: "user-preview", component: UserDetailsComponent },
   { path: "users-list", component: UsersListComponent },
   { path: "edit-user", component: EditUserComponent },
-  { path: "admin-panel", component: AdminPanelComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin", component: AdminPanelComponent, canActivate: [AdminAuthGuard] },
   { path: "**", pathMatch: "full", component: NotFoundComponent }
 ];

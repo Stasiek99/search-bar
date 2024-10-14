@@ -23,12 +23,17 @@ export class UserStateService {
   }
 
   loginUser(login: string, password: string): boolean {
-    const userExists = this.checkIfUserExists(login, password);
-    if (userExists) {
-      this.loggedInUser = this.users.find(user => user.login === login && user.password === password) || null;
+    if (login === "admin" && password === "admin") {
+      this.loggedInUser = { login: "admin", password: "admin", name: "Admin", country: "N/A", age: 1, role: "admin" };
       return true;
     }
-    return false
+
+    const userExists = this.checkIfUserExists(login, password);
+    if (userExists) {
+      this.loggedInUser = this.users.find(u => u.login === login && u.password === password) || null;
+      return true;
+    }
+    return false;
   }
 
   logoutUser(): void {
@@ -48,7 +53,7 @@ export class UserStateService {
   }
 
   getLoggedInUser(): User | null {
-    return this.loggedInUser;
+    return this.loggedInUser || null;
   }
 
   ///////TODO: Refactor code below

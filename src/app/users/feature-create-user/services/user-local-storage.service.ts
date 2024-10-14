@@ -34,4 +34,23 @@ export class UserLocalStorageService {
     }
     return false;
   }
+
+  deleteUser(user: User): void {
+    const users = this.getUsers();
+    if (users) {
+      const updatedUsers = users.filter(u => u.login !== user.login);
+      this.addUser(updatedUsers);
+    }
+  }
+
+  editUser(updatedUser: User): void {
+    const users = this.getUsers();
+    if (users) {
+      const userIndex = users.findIndex(u => u.login === updatedUser.login);
+      if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...updatedUser };
+        this.addUser(users);
+      }
+    }
+  }
 }
