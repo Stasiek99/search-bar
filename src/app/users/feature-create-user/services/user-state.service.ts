@@ -9,7 +9,6 @@ import { UserLocalStorageService } from "./user-local-storage.service";
 export class UserStateService {
   private readonly users: User[];
   private readonly defaultValue = [];
-  private loggedInUser: User | null = null;
 
   constructor(private userLocalStorageService: UserLocalStorageService) {
     const tmp: User[] | null = this.userLocalStorageService.getUsers();
@@ -24,37 +23,44 @@ export class UserStateService {
 
   loginUser(login: string, password: string): boolean {
     if (login === "admin" && password === "admin") {
-      this.loggedInUser = { login: "admin", password: "admin", name: "Admin", country: "N/A", age: 1, role: "admin" };
+      const adminUser: User = { login: "admin", password: "admin", name: "Admin", country: "N/A", age: 1, role: "admin" };
+      this.userLocalStorageService.setLoggedInUser(adminUser);
       return true;
     }
 
     const userExists = this.checkIfUserExists(login, password);
     if (userExists) {
-      this.loggedInUser = this.users.find(u => u.login === login && u.password === password) || null;
+      const loggedInUser = this.users.find(u => u.login === login && u.password === password) || null;
+      if (loggedInUser) {
+        this.userLocalStorageService.setLoggedInUser(loggedInUser);
+      }
       return true;
     }
     return false;
   }
 
   logoutUser(): void {
-    this.loggedInUser = null;
+    this.userLocalStorageService.clearLoggedInUser();
   }
 
   isUserAdmin(): boolean {
-    return this.loggedInUser?.role === "admin";
+    const loggedInUser = this.userLocalStorageService.getLoggedInUser();
+    return loggedInUser?.role === "admin";
   }
 
   isUserLoggedIn(): boolean {
-    return this.loggedInUser !== null;
+    return this.userLocalStorageService.getLoggedInUser() !== null;
+  }
+
+  getLoggedInUser(): User | null {
+    return this.userLocalStorageService.getLoggedInUser();
   }
 
   private checkIfUserExists(login: string, password: string): boolean {
     return this.userLocalStorageService.checkIfUserExist(login, password);
   }
 
-  getLoggedInUser(): User | null {
-    return this.loggedInUser || null;
-  }
+
 
   ///////TODO: Refactor code below
 

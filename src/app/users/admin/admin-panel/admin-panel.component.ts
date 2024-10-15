@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NgIf } from "@angular/common";
 
-import {
-  MatTableModule
-} from "@angular/material/table";
+import { MatTableModule } from "@angular/material/table";
 import { MatButton } from "@angular/material/button";
 
 import { AdminService } from "../services/admin.service";

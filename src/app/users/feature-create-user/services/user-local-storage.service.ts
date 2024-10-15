@@ -7,6 +7,7 @@ import { User } from "../../feature-user-details/interfaces/user.interface";
 })
 export class UserLocalStorageService {
   private readonly userStorageItemKey = "users_list";
+  private readonly loggedInUserKey = "logged_in_user";
 
   addUser(usersValue: User[]): void {
     window.localStorage.setItem(this.userStorageItemKey, JSON.stringify(usersValue));
@@ -52,5 +53,18 @@ export class UserLocalStorageService {
         this.addUser(users);
       }
     }
+  }
+
+  setLoggedInUser(user: User): void {
+    window.localStorage.setItem(this.loggedInUserKey, JSON.stringify(user));
+  }
+
+  getLoggedInUser(): User | null {
+    const objectToParse = window.localStorage.getItem(this.loggedInUserKey);
+    return objectToParse ? JSON.parse(objectToParse) : null;
+  }
+
+  clearLoggedInUser(): void {
+    window.localStorage.removeItem(this.loggedInUserKey);
   }
 }

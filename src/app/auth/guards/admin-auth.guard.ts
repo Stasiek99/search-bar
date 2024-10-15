@@ -11,11 +11,9 @@ export class AdminAuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.userStateService.isUserAdmin()) {
-      console.log("true");
       return true;
     } else {
       this.router.navigate(["/home"]);
-      console.log("false")
       return false;
     }
   }
