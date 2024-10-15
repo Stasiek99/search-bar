@@ -10,8 +10,9 @@ import { SearchResultListComponent } from "./search-engine/feature-search-result
 import { LoginViewComponent } from "./auth/feature-login/containers/login-view/login-view.component";
 import { UsersListComponent } from "./users/feature-user-list/containers/users-list/users-list.component";
 import { UserAuthGuard } from "./auth/guards/user-auth.guard";
-import { AdminPanelComponent } from "./users/admin/admin-panel/admin-panel.component";
+import { AdminPanelComponent } from "./users/admin/containers/admin-panel/admin-panel.component";
 import { AdminAuthGuard } from "./auth/guards/admin-auth.guard";
+import { AdminEditUserComponent } from "./users/admin/feature-edit-user/containers/admin-edit-user/admin-edit-user.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path: "users-list", component: UsersListComponent },
   { path: "edit-user", component: EditUserComponent },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin-edit-user", component: AdminEditUserComponent, canActivate: [AdminAuthGuard] },
   { path: "**", pathMatch: "full", component: NotFoundComponent }
 ];

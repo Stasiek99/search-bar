@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIf } from "@angular/common";
+import { Router } from "@angular/router";
 
 import { MatTableModule } from "@angular/material/table";
 import { MatButton } from "@angular/material/button";
 
-import { AdminService } from "../services/admin.service";
-import { User } from "../../feature-user-details/interfaces/user.interface";
-
+import { AdminService } from "../../services/admin.service";
+import { User } from "../../../feature-user-details/interfaces/user.interface";
 
 @Component({
   selector: 'app-admin-panel',
@@ -21,9 +21,9 @@ import { User } from "../../feature-user-details/interfaces/user.interface";
 })
 export class AdminPanelComponent {
   users: User[] = [];
-  readonly displayedColumns: string[] = ["name", "login", "role"];
+  readonly displayedColumns: string[] = ["name", "login", "role", "actions"];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private router: Router) {
     this.loadUsers();
   }
 
@@ -33,6 +33,7 @@ export class AdminPanelComponent {
   }
 
   editUser(updatedUser: User): void {
+    this.router.navigate(["/admin-edit-user"]);
     this.adminService.editUser(updatedUser);
     this.loadUsers();
   }
