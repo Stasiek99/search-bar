@@ -9,7 +9,6 @@ import { UserLocalStorageService } from "./user-local-storage.service";
 export class UserStateService {
   private readonly users: User[];
   private readonly defaultValue = [];
-  private loggedInUser: User | null = null;
 
   constructor(private userLocalStorageService: UserLocalStorageService) {
     const tmp: User[] | null = this.userLocalStorageService.getUsers();
@@ -17,34 +16,51 @@ export class UserStateService {
   }
 
   addUser(user: User): void {
+    user.role = "user";
     this.users.push(user);
     this.userLocalStorageService.addUser(this.users);
   }
 
   loginUser(login: string, password: string): boolean {
-    const userExists = this.checkIfUserExists(login, password);
-    if (userExists) {
-      this.loggedInUser = this.users.find(user => user.login === login && user.password === password) || null;
+    if (login === "admin" && password === "admin") {
+      const adminUser: User = { login: "admin", password: "admin", name: "Admin", country: "N/A", age: 1, role: "admin" };
+      this.userLocalStorageService.setLoggedInUser(adminUser);
       return true;
     }
-    return false
+
+    const userExists = this.checkIfUserExists(login, password);
+    if (userExists) {
+      const loggedInUser = this.users.find(u => u.login === login && u.password === password) || null;
+      if (loggedInUser) {
+        this.userLocalStorageService.setLoggedInUser(loggedInUser);
+      }
+      return true;
+    }
+    return false;
   }
 
   logoutUser(): void {
-    this.loggedInUser = null;
+    this.userLocalStorageService.clearLoggedInUser();
+  }
+
+  isUserAdmin(): boolean {
+    const loggedInUser = this.userLocalStorageService.getLoggedInUser();
+    return loggedInUser?.role === "admin";
   }
 
   isUserLoggedIn(): boolean {
-    return this.loggedInUser !== null;
-  }
-
-  checkIfUserExists(login: string, password: string): boolean {
-    return this.userLocalStorageService.checkIfUserExist(login, password);
+    return this.userLocalStorageService.getLoggedInUser() !== null;
   }
 
   getLoggedInUser(): User | null {
-    return this.loggedInUser;
+    return this.userLocalStorageService.getLoggedInUser();
   }
+
+  private checkIfUserExists(login: string, password: string): boolean {
+    return this.userLocalStorageService.checkIfUserExist(login, password);
+  }
+
+
 
   ///////TODO: Refactor code below
 

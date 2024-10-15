@@ -7,6 +7,7 @@ import { User } from "../../feature-user-details/interfaces/user.interface";
 })
 export class UserLocalStorageService {
   private readonly userStorageItemKey = "users_list";
+  private readonly loggedInUserKey = "logged_in_user";
 
   addUser(usersValue: User[]): void {
     window.localStorage.setItem(this.userStorageItemKey, JSON.stringify(usersValue));
@@ -33,5 +34,37 @@ export class UserLocalStorageService {
       return users.some(user => user.login === login && user.password === password);
     }
     return false;
+  }
+
+  deleteUser(user: User): void {
+    const users = this.getUsers();
+    if (users) {
+      const updatedUsers = users.filter(u => u.login !== user.login);
+      this.addUser(updatedUsers);
+    }
+  }
+
+  editUser(updatedUser: User): void {
+    const users = this.getUsers();
+    if (users) {
+      const userIndex = users.findIndex(u => u.login === updatedUser.login);
+      if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...updatedUser };
+        this.addUser(users);
+      }
+    }
+  }
+
+  setLoggedInUser(user: User): void {
+    window.localStorage.setItem(this.loggedInUserKey, JSON.stringify(user));
+  }
+
+  getLoggedInUser(): User | null {
+    const objectToParse = window.localStorage.getItem(this.loggedInUserKey);
+    return objectToParse ? JSON.parse(objectToParse) : null;
+  }
+
+  clearLoggedInUser(): void {
+    window.localStorage.removeItem(this.loggedInUserKey);
   }
 }
