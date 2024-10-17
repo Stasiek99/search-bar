@@ -55,6 +55,17 @@ export class UserLocalStorageService {
     }
   }
 
+  changeUserRole(user: User): void {
+    const users = this.getUsers();
+    if (users) {
+      const userIndex = users.findIndex(u => u.login === user.login);
+      if (userIndex !== -1) {
+        users[userIndex].role = users[userIndex].role === "user" ? "admin" : "user";
+        this.addUser(users);
+      }
+    }
+  }
+
   setLoggedInUser(user: User): void {
     window.localStorage.setItem(this.loggedInUserKey, JSON.stringify(user));
   }

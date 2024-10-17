@@ -20,4 +20,8 @@ export class AdminService {
   editUser(updatedUser: User): void {
     this.userLocalStorageService.editUser(updatedUser);
   }
+
+  changeUserRole(user: User): void {
+    this.userLocalStorageService.changeUserRole(user);
+  }
 }

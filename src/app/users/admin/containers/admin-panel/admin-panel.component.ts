@@ -32,9 +32,12 @@ export class AdminPanelComponent {
     this.loadUsers();
   }
 
-  editUser(updatedUser: User): void {
+  editUser(): void {
     this.router.navigate(["/admin-edit-user"]);
-    this.adminService.editUser(updatedUser);
+  }
+
+  changeUserRole(userToEdit: User): void {
+    this.adminService.changeUserRole(userToEdit);
     this.loadUsers();
   }
 
