@@ -16,8 +16,9 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef class="table__header">Actions</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-stroked-button (click)="editUser(element)">Edit</button>
+      <button mat-flat-button (click)="changeUserRole(element)" >Edit role</button>
       <button mat-flat-button color="warn" (click)="deleteUser(element)">Delete</button>
+      <button mat-stroked-button (click)="editUser()">Edit User Details</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
