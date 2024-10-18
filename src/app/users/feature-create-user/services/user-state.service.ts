@@ -52,37 +52,34 @@ export class UserStateService {
     return this.userLocalStorageService.getLoggedInUser() !== null;
   }
 
+  setLoggedInUser(user: User): void {
+    this.userLocalStorageService.setLoggedInUser(user);
+  }
+
   getLoggedInUser(): User | null {
     return this.userLocalStorageService.getLoggedInUser();
   }
 
-  private checkIfUserExists(login: string, password: string): boolean {
-    return this.userLocalStorageService.checkIfUserExist(login, password);
+  editLoggedInUser(editedUser: User): void {
+    if (this.isUserLoggedIn()) {
+      this.userLocalStorageService.editUser(editedUser);
+      this.userLocalStorageService.setLoggedInUser(editedUser);
+    }
   }
 
-
-
-  ///////TODO: Refactor code below
-
-  getLastAddedUser(): User | null {
-    return this.users[this.users.length - 1];
-  }
-
-  deleteLastAddedUser(): void {
-    this.users.pop();
-    this.userLocalStorageService.deleteLastAddedUser(this.users);
-  }
-
-  editLastAddedUser(editedUser: User): void {
-    this.users[this.getLastUserIndex()] = editedUser;
-    this.userLocalStorageService.editLastAddedUser(this.users);
+  deleteLoggedInUser(): void {
+    const loggedInUser = this.getLoggedInUser();
+    if (loggedInUser) {
+      this.userLocalStorageService.deleteUser(loggedInUser);
+      this.logoutUser();
+    }
   }
 
   getUsers(): User[] {
     return this.users;
   }
 
-  private getLastUserIndex(): number {
-    return this.users.length - 1;
+  private checkIfUserExists(login: string, password: string): boolean {
+    return this.userLocalStorageService.checkIfUserExist(login, password);
   }
 }
