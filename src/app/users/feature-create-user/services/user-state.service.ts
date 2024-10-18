@@ -52,6 +52,10 @@ export class UserStateService {
     return this.userLocalStorageService.getLoggedInUser() !== null;
   }
 
+  setLoggedInUser(user: User): void {
+    this.userLocalStorageService.setLoggedInUser(user);
+  }
+
   getLoggedInUser(): User | null {
     return this.userLocalStorageService.getLoggedInUser();
   }

@@ -31,8 +31,8 @@ export class CreateUserComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.userStateService.addUser(userData);
+        this.userStateService.setLoggedInUser(userData);
         this.openSnackBar();
-        this.redirectToUserPreview();
       }
     });
   }
@@ -41,9 +41,5 @@ export class CreateUserComponent {
     this.snackbar.openFromComponent(CreatedUserSnackbarComponent, {
       duration: this.durationInSecond * 1000
     });
-  }
-
-  redirectToUserPreview(): void {
-    this.router.navigate(["/", "user-preview"]);
   }
 }
