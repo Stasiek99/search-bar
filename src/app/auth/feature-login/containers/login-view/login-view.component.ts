@@ -45,8 +45,13 @@ export class LoginViewComponent {
     const loginSuccess = this.userStateService.loginUser(login, password);
 
     if (loginSuccess) {
-      console.log("User logged in successfully");
-      this.redirectToUserDashboard();
+      if (login === "admin" && password === "admin") {
+        console.log("User logged in successfully");
+        this.redirectToAdminPanel();
+      } else {
+        console.log("User logged in successfully");
+        this.redirectToUserDashboard();
+      }
     } else {
       console.log("Invalid login credentials");
     }
@@ -54,5 +59,9 @@ export class LoginViewComponent {
 
   private redirectToUserDashboard(): void {
     this.router.navigate(['/', "user-preview"]);
+  }
+
+  private redirectToAdminPanel(): void {
+    this.router.navigate(["/", "admin"]);
   }
 }

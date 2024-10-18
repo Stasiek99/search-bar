@@ -8,6 +8,7 @@ import { MatInput } from "@angular/material/input";
 import { MatButton } from "@angular/material/button";
 
 import { User } from "../../../users/feature-user-details/interfaces/user.interface";
+import {UserStateService} from "../../../users/feature-create-user/services/user-state.service";
 
 @Component({
   selector: 'app-user-form',
@@ -22,7 +23,7 @@ export class UserFormComponent implements OnInit {
 
   userForm!: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(private router: Router, private fb: FormBuilder, private userStateService: UserStateService) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
@@ -35,14 +36,28 @@ export class UserFormComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-    if (this.userForm?.valid) {
-      this.formSubmit.emit(this.userForm.value);
+    if (this.userForm.valid) {
+      const formValue = this.userForm.value;
+      const role = (formValue.login === "admin" && formValue.password === "admin") ? "admin" : "user";
+
+      const user: User = {
+        ...formValue,
+        role: role,
+      }
+      this.formSubmit.emit(user);
       this.redirectToUserPreview();
     }
   }
 
   redirectToUserPreview(): void {
-    this.router.navigate(["/", "user-preview"]);
+    const loggedInUser = this.userStateService.getLoggedInUser();
+    if (loggedInUser) {
+      if (loggedInUser.role === "admin") {
+        this.router.navigate(["/", "admin"]);
+      } else {
+        this.router.navigate(["/", "user-preview"]);
+      }
+    }
   }
 
   get formControls() {
