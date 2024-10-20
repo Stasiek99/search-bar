@@ -1,5 +1,33 @@
-<mat-form-field>
-  <mat-label>Type a Country</mat-label>
-  <input matInput type="text" class="search-bar" [(ngModel)]="inputValue" (ngModelChange)="onChangeSearchBarInput(inputValue)">
-</mat-form-field>
-<button mat-flat-button [disabled]="!inputValue" (click)="onSubmit()">Search</button>
+<div class="input-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a property</mat-label>
+    <mat-select [(ngModel)]="selectedProperty" (selectionChange)="onFilterChange()">
+      <mat-option value="all">All countries</mat-option>
+      <mat-option value="name">Country name</mat-option>
+      <mat-option value="currency">Currency</mat-option>
+      <mat-option value="lang">Language</mat-option>
+      <mat-option value="capital">Capital</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Insert value</mat-label>
+    <input matInput
+           [(ngModel)]="filterValue"
+           (ngModelChange)="onChangeSearchBarInput(filterValue)"
+           (input)="onFilterChange()"
+           [disabled]="selectedProperty === 'all'"
+           placeholder="Enter Search Value">
+  </mat-form-field>
+
+  <button mat-flat-button
+          (click)="onSubmit()"
+          [disabled]="selectedProperty === 'all' || !filterValue"
+  >Search</button>
+</div>
+
+<!--<mat-form-field>-->
+<!--  <mat-label>Type a Country</mat-label>-->
+<!--  <input matInput type="text" class="search-bar" [(ngModel)]="inputValue" (ngModelChange)="onChangeSearchBarInput(inputValue)">-->
+<!--</mat-form-field>-->
+<!--<button mat-flat-button [disabled]="!inputValue" (click)="onSubmit()">Search</button>-->
