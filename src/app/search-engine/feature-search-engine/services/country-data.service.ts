@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject, of} from "rxjs";
-import { switchMap, map, catchError } from "rxjs";
+import { switchMap, map, catchError, debounceTime, distinctUntilChanged } from "rxjs";
 
 import { CountryElement } from "../interfaces/country-element.interface";
 
@@ -16,6 +16,8 @@ export class CountryDataService {
   private sortOptionSubject = new BehaviorSubject<string>("");
 
   countries$ = this.filterSubject.asObservable().pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
     switchMap(filter => this.fetchCountries(filter.type, filter.value)),
     switchMap(countries => this.sortOptionSubject.asObservable().pipe(
       map(sortOption => this.sortCountries(countries, sortOption))
