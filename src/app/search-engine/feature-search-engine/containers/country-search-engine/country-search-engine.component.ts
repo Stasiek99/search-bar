@@ -11,11 +11,12 @@ import { SearchAutocompleteComponent } from "../../components/search-autocomplet
 import { SnackbarSearchAutocompleteErrorComponent } from "../../components/snackbar/snackbar-search-autocomplete-error.component";
 import { CountryDataService } from "../../services/country-data.service";
 import { CountrySearchStateService } from "../../../feature-search-result-list/services/country-search-state.service";
+import { SortSelectComponent } from "../../components/sort-select/sort-select.component";
 
 @Component({
   selector: 'app-country-search-engine',
   standalone: true,
-  imports: [SearchInputComponent, SearchAutocompleteComponent, HttpClientModule, NgIf],
+  imports: [SearchInputComponent, SearchAutocompleteComponent, HttpClientModule, NgIf, SortSelectComponent],
   providers: [CountryDataService, CountrySearchStateService],
   templateUrl: './country-search-engine.component.html',
   styleUrl: './country-search-engine.component.scss'

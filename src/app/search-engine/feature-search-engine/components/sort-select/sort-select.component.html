@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill" class="sort">
+  <mat-label>Sort by</mat-label>
+  <mat-select [(ngModel)]="sortOption" (selectionChange)="onSortChange()">
+    <mat-option value="">no sort</mat-option>
+    <mat-option value="name">name (alphabetically)</mat-option>
+    <mat-option value="population">population</mat-option>
+  </mat-select>
+</mat-form-field>

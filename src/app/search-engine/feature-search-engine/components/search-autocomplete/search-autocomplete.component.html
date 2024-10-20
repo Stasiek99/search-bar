@@ -1,3 +1,10 @@
-<li *ngFor="let item of filteredCountries" (click)="onSelectAutoCompleteElement(item.name)">
-  <p>{{ item.name }}</p>
-</li>
+<div class="no-results" *ngIf="noResults">
+  <p>No country with the given name was found</p>
+</div>
+
+<ol class="country__grid" *ngIf="!noResults">
+  <li class="country__item" *ngFor="let country of countries" (click)="onSelectAutoCompleteElement(country.name.common)">
+    <img class="flag" [src]="country.flags.png" alt="{{ country.name.common }} flag">
+    <h2>{{ country.name.common }}</h2>
+  </li>
+</ol>
