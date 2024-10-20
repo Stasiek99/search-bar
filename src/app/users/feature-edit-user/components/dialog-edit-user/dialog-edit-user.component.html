@@ -1,0 +1,8 @@
+<h2 mat-dialog-title class="dialog-title">Edit user details</h2>
+<mat-dialog-content class="dialog-content">
+  <h3>Are you sure you want to change user data?</h3>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-flat-button class="dialog-submit" [mat-dialog-close]="true" (click)="redirectToUserPreview()">Submit</button>
+  <button mat-stroked-button class="dialog-close" (click)="onCloseClicked()">Close</button>
+</mat-dialog-actions>

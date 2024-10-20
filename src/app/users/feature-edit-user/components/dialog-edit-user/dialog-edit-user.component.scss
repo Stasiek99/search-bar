@@ -1,0 +1,17 @@
+.dialog-title {
+  margin-bottom: 10px;
+}
+
+.dialog-content {
+  margin-bottom: 20px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dialog-submit,
+.dialog-close {
+  width: 100%;
+}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
 
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -7,7 +6,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../../../feature-user-details/interfaces/user.interface";
 import { UserStateService } from "../../services/user-state.service";
 import { UserFormComponent } from "../../../../shared/ui/user-form/user-form.component";
-import { DialogComponent } from "../../components/dialog/dialog.component";
+import { DialogCreateUserComponent } from "../../components/dialog/dialog-create-user.component";
 import { CreatedUserSnackbarComponent } from "../../components/snackbar/created-user-snackbar.component";
 
 @Component({
@@ -20,11 +19,11 @@ import { CreatedUserSnackbarComponent } from "../../components/snackbar/created-
 export class CreateUserComponent {
   durationInSecond = 5;
 
-  constructor(private userStateService: UserStateService, private router: Router, private dialog: MatDialog, private snackbar: MatSnackBar) {
+  constructor(private userStateService: UserStateService, private dialog: MatDialog, private snackbar: MatSnackBar) {
   }
 
   openDialog(userData: User): void {
-    let dialogRef: MatDialogRef<DialogComponent> = this.dialog.open(DialogComponent, {
+    let dialogRef: MatDialogRef<DialogCreateUserComponent> = this.dialog.open(DialogCreateUserComponent, {
       height: "200px",
       width: "400px"
     });
