@@ -5,10 +5,11 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatOption, MatSelect } from "@angular/material/select";
 
 import { CountryElement } from "../../interfaces/country-element.interface";
 import { CountryDataService } from "../../services/country-data.service";
-import {MatOption, MatSelect} from "@angular/material/select";
+import {SortSelectComponent} from "../sort-select/sort-select.component";
 
 @Component({
   selector: 'app-search-input',
@@ -20,7 +21,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
     MatIconModule,
     MatInputModule,
     MatSelect,
-    MatOption
+    MatOption,
+    SortSelectComponent
   ],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss'
